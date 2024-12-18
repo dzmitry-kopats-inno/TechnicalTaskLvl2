@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE2A5AE12D119C6200CEDCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE02D119C6200CEDCE1 /* AppDelegate.swift */; };
 		CE2A5AE32D119C6200CEDCE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE22D119C6200CEDCE1 /* SceneDelegate.swift */; };
-		CE2A5AE52D119C6200CEDCE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE42D119C6200CEDCE1 /* ViewController.swift */; };
-		CE2A5AE82D119C6200CEDCE1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE2A5AE72D119C6200CEDCE1 /* Base */; };
+		CE2A5AE52D119C6200CEDCE1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE42D119C6200CEDCE1 /* LoginViewController.swift */; };
 		CE2A5AEB2D119C6200CEDCE1 /* ShipsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */; };
 		CE2A5AED2D119C6400CEDCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2A5AEC2D119C6400CEDCE1 /* Assets.xcassets */; };
 		CE2A5AF02D119C6400CEDCE1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE2A5AEF2D119C6400CEDCE1 /* Base */; };
@@ -40,8 +39,7 @@
 		CE2A5ADD2D119C6200CEDCE1 /* ShipsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShipsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2A5AE02D119C6200CEDCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE2A5AE22D119C6200CEDCE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE2A5AE42D119C6200CEDCE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CE2A5AE72D119C6200CEDCE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE2A5AE42D119C6200CEDCE1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE2A5AEA2D119C6200CEDCE1 /* ShipsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShipsApp.xcdatamodel; sourceTree = "<group>"; };
 		CE2A5AEC2D119C6400CEDCE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE2A5AEF2D119C6400CEDCE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,14 +99,13 @@
 		CE2A5ADF2D119C6200CEDCE1 /* ShipsApp */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A5AE02D119C6200CEDCE1 /* AppDelegate.swift */,
-				CE2A5AE22D119C6200CEDCE1 /* SceneDelegate.swift */,
-				CE2A5AE42D119C6200CEDCE1 /* ViewController.swift */,
-				CE2A5AE62D119C6200CEDCE1 /* Main.storyboard */,
-				CE2A5AEC2D119C6400CEDCE1 /* Assets.xcassets */,
-				CE2A5AEE2D119C6400CEDCE1 /* LaunchScreen.storyboard */,
-				CE2A5AF12D119C6400CEDCE1 /* Info.plist */,
-				CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */,
+				CE2A5B182D130FE400CEDCE1 /* LoginModule */,
+				CE2A5B172D130FDD00CEDCE1 /* CoreData */,
+				CE2A5B162D130FD800CEDCE1 /* Helpers */,
+				CE2A5B152D130FD200CEDCE1 /* Views */,
+				CE2A5B142D130FCA00CEDCE1 /* Extensions */,
+				CE2A5B132D130FC000CEDCE1 /* Application */,
+				CE2A5B192D130FEF00CEDCE1 /* Resources */,
 			);
 			path = ShipsApp;
 			sourceTree = "<group>";
@@ -128,6 +125,62 @@
 				CE2A5B062D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift */,
 			);
 			path = ShipsAppUITests;
+			sourceTree = "<group>";
+		};
+		CE2A5B132D130FC000CEDCE1 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AE02D119C6200CEDCE1 /* AppDelegate.swift */,
+				CE2A5AE22D119C6200CEDCE1 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		CE2A5B142D130FCA00CEDCE1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE2A5B152D130FD200CEDCE1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE2A5B162D130FD800CEDCE1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CE2A5B172D130FDD00CEDCE1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		CE2A5B182D130FE400CEDCE1 /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AE42D119C6200CEDCE1 /* LoginViewController.swift */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		CE2A5B192D130FEF00CEDCE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AEC2D119C6400CEDCE1 /* Assets.xcassets */,
+				CE2A5AEE2D119C6400CEDCE1 /* LaunchScreen.storyboard */,
+				CE2A5AF12D119C6400CEDCE1 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +289,6 @@
 			files = (
 				CE2A5AED2D119C6400CEDCE1 /* Assets.xcassets in Resources */,
 				CE2A5AF02D119C6400CEDCE1 /* Base in Resources */,
-				CE2A5AE82D119C6200CEDCE1 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2A5AE52D119C6200CEDCE1 /* ViewController.swift in Sources */,
+				CE2A5AE52D119C6200CEDCE1 /* LoginViewController.swift in Sources */,
 				CE2A5AEB2D119C6200CEDCE1 /* ShipsApp.xcdatamodeld in Sources */,
 				CE2A5AE12D119C6200CEDCE1 /* AppDelegate.swift in Sources */,
 				CE2A5AE32D119C6200CEDCE1 /* SceneDelegate.swift in Sources */,
@@ -301,14 +353,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CE2A5AE62D119C6200CEDCE1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE2A5AE72D119C6200CEDCE1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CE2A5AEE2D119C6400CEDCE1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -444,16 +488,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 67G4B948ZP;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShipsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,9 +504,14 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kopats.dzmitry.ShipsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -472,16 +520,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 67G4B948ZP;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShipsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,9 +536,14 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kopats.dzmitry.ShipsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
