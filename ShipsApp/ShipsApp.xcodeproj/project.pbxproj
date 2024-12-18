@@ -16,6 +16,17 @@
 		CE2A5AFB2D119C6400CEDCE1 /* ShipsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AFA2D119C6400CEDCE1 /* ShipsAppTests.swift */; };
 		CE2A5B052D119C6400CEDCE1 /* ShipsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B042D119C6400CEDCE1 /* ShipsAppUITests.swift */; };
 		CE2A5B072D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B062D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift */; };
+		CE2A5B1B2D1312A400CEDCE1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B1A2D1312A400CEDCE1 /* LoginViewModel.swift */; };
+		CE2A5B1D2D1312B900CEDCE1 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B1C2D1312B900CEDCE1 /* Reusable.swift */; };
+		CE2A5B202D1313B100CEDCE1 /* NetworkMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B1F2D1313B100CEDCE1 /* NetworkMonitorService.swift */; };
+		CE2A5B232D1314ED00CEDCE1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5B222D1314ED00CEDCE1 /* RxCocoa */; };
+		CE2A5B252D1314ED00CEDCE1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5B242D1314ED00CEDCE1 /* RxSwift */; };
+		CE2A5B272D1314ED00CEDCE1 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5B262D1314ED00CEDCE1 /* RxTest */; };
+		CE2A5B2A2D13163F00CEDCE1 /* ShipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B292D13163F00CEDCE1 /* ShipModel.swift */; };
+		CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B2D2D1316BA00CEDCE1 /* AllShipsViewController.swift */; };
+		CE2A5B302D1316D100CEDCE1 /* AllShipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */; };
+		CE2A5B322D1316EB00CEDCE1 /* ShipDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */; };
+		CE2A5B342D13170900CEDCE1 /* ShipDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +60,14 @@
 		CE2A5B002D119C6400CEDCE1 /* ShipsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShipsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2A5B042D119C6400CEDCE1 /* ShipsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipsAppUITests.swift; sourceTree = "<group>"; };
 		CE2A5B062D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE2A5B1A2D1312A400CEDCE1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		CE2A5B1C2D1312B900CEDCE1 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		CE2A5B1F2D1313B100CEDCE1 /* NetworkMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorService.swift; sourceTree = "<group>"; };
+		CE2A5B292D13163F00CEDCE1 /* ShipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipModel.swift; sourceTree = "<group>"; };
+		CE2A5B2D2D1316BA00CEDCE1 /* AllShipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShipsViewController.swift; sourceTree = "<group>"; };
+		CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShipsViewModel.swift; sourceTree = "<group>"; };
+		CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailsViewController.swift; sourceTree = "<group>"; };
+		CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2A5B252D1314ED00CEDCE1 /* RxSwift in Frameworks */,
+				CE2A5B232D1314ED00CEDCE1 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2A5B272D1314ED00CEDCE1 /* RxTest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +121,11 @@
 		CE2A5ADF2D119C6200CEDCE1 /* ShipsApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A5B282D13163100CEDCE1 /* Models */,
 				CE2A5B182D130FE400CEDCE1 /* LoginModule */,
+				CE2A5B2B2D13168900CEDCE1 /* AllShipsModule */,
+				CE2A5B2C2D13169800CEDCE1 /* ShipDetailsModule */,
+				CE2A5B1E2D13139E00CEDCE1 /* Services */,
 				CE2A5B172D130FDD00CEDCE1 /* CoreData */,
 				CE2A5B162D130FD800CEDCE1 /* Helpers */,
 				CE2A5B152D130FD200CEDCE1 /* Views */,
@@ -153,6 +179,7 @@
 		CE2A5B162D130FD800CEDCE1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A5B1C2D1312B900CEDCE1 /* Reusable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -169,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2A5AE42D119C6200CEDCE1 /* LoginViewController.swift */,
+				CE2A5B1A2D1312A400CEDCE1 /* LoginViewModel.swift */,
 			);
 			path = LoginModule;
 			sourceTree = "<group>";
@@ -181,6 +209,40 @@
 				CE2A5AF12D119C6400CEDCE1 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE2A5B1E2D13139E00CEDCE1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B1F2D1313B100CEDCE1 /* NetworkMonitorService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CE2A5B282D13163100CEDCE1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B292D13163F00CEDCE1 /* ShipModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE2A5B2B2D13168900CEDCE1 /* AllShipsModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B2D2D1316BA00CEDCE1 /* AllShipsViewController.swift */,
+				CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */,
+			);
+			path = AllShipsModule;
+			sourceTree = "<group>";
+		};
+		CE2A5B2C2D13169800CEDCE1 /* ShipDetailsModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */,
+				CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */,
+			);
+			path = ShipDetailsModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +261,10 @@
 			dependencies = (
 			);
 			name = ShipsApp;
+			packageProductDependencies = (
+				CE2A5B222D1314ED00CEDCE1 /* RxCocoa */,
+				CE2A5B242D1314ED00CEDCE1 /* RxSwift */,
+			);
 			productName = ShipsApp;
 			productReference = CE2A5ADD2D119C6200CEDCE1 /* ShipsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +283,9 @@
 				CE2A5AF82D119C6400CEDCE1 /* PBXTargetDependency */,
 			);
 			name = ShipsAppTests;
+			packageProductDependencies = (
+				CE2A5B262D1314ED00CEDCE1 /* RxTest */,
+			);
 			productName = ShipsAppTests;
 			productReference = CE2A5AF62D119C6400CEDCE1 /* ShipsAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -271,6 +340,9 @@
 				Base,
 			);
 			mainGroup = CE2A5AD42D119C6200CEDCE1;
+			packageReferences = (
+				CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = CE2A5ADE2D119C6200CEDCE1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -313,10 +385,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2A5B1D2D1312B900CEDCE1 /* Reusable.swift in Sources */,
 				CE2A5AE52D119C6200CEDCE1 /* LoginViewController.swift in Sources */,
+				CE2A5B202D1313B100CEDCE1 /* NetworkMonitorService.swift in Sources */,
+				CE2A5B342D13170900CEDCE1 /* ShipDetailsViewModel.swift in Sources */,
 				CE2A5AEB2D119C6200CEDCE1 /* ShipsApp.xcdatamodeld in Sources */,
+				CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */,
 				CE2A5AE12D119C6200CEDCE1 /* AppDelegate.swift in Sources */,
+				CE2A5B1B2D1312A400CEDCE1 /* LoginViewModel.swift in Sources */,
 				CE2A5AE32D119C6200CEDCE1 /* SceneDelegate.swift in Sources */,
+				CE2A5B302D1316D100CEDCE1 /* AllShipsViewModel.swift in Sources */,
+				CE2A5B2A2D13163F00CEDCE1 /* ShipModel.swift in Sources */,
+				CE2A5B322D1316EB00CEDCE1 /* ShipDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,6 +743,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE2A5B222D1314ED00CEDCE1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		CE2A5B242D1314ED00CEDCE1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		CE2A5B262D1314ED00CEDCE1 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */ = {
