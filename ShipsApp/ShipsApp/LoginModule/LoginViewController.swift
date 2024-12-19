@@ -13,10 +13,12 @@ private enum Constants {
     static let commonSpacing: CGFloat = 16.0
     static let commonInset: CGFloat = 24.0
     static let buttonHeight: CGFloat = 50.0
-    static let stackViewTopInset: CGFloat = 100.0
+    static let stackViewTopInset: CGFloat = 60.0
     static let titleText = "Welcome to the Ships Information project"
     static let emailFieldLabel = "Enter your email"
     static let passwordFieldLabel = "Enter your password"
+    static let emailPlaceholder = "Email"
+    static let passwordPlaceholder = "Password"
     static let loginButtonTitle = "Login"
     static let guestButtonTitle = "Login as a guest"
 }
@@ -30,14 +32,18 @@ final class LoginViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = Constants.titleText
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
     
-    private let emailField = CustomTextFieldView(labelText: Constants.emailFieldLabel, type: .email)
-    private let passwordField = CustomTextFieldView(labelText: Constants.passwordFieldLabel, type: .requiredText)
+    private let emailField = CustomTextFieldView(labelText: Constants.emailFieldLabel,
+                                                 type: .email,
+                                                 placeholder: Constants.emailPlaceholder)
+    private let passwordField = CustomTextFieldView(labelText: Constants.passwordFieldLabel,
+                                                    type: .requiredText,
+                                                    placeholder: Constants.passwordPlaceholder)
 
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -79,6 +85,7 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindActions()
+        setupDismissKeyboardGesture()
     }
 }
 
@@ -126,5 +133,15 @@ private extension LoginViewController {
                 debugPrint("Guest login tapped")
             })
             .disposed(by: disposeBag)
+    }
+    
+    func setupDismissKeyboardGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
