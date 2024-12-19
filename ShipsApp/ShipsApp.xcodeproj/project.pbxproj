@@ -1,0 +1,796 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE2A5AE12D119C6200CEDCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE02D119C6200CEDCE1 /* AppDelegate.swift */; };
+		CE2A5AE32D119C6200CEDCE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE22D119C6200CEDCE1 /* SceneDelegate.swift */; };
+		CE2A5AE52D119C6200CEDCE1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE42D119C6200CEDCE1 /* LoginViewController.swift */; };
+		CE2A5AEB2D119C6200CEDCE1 /* ShipsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */; };
+		CE2A5AED2D119C6400CEDCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2A5AEC2D119C6400CEDCE1 /* Assets.xcassets */; };
+		CE2A5AF02D119C6400CEDCE1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE2A5AEF2D119C6400CEDCE1 /* Base */; };
+		CE2A5AFB2D119C6400CEDCE1 /* ShipsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AFA2D119C6400CEDCE1 /* ShipsAppTests.swift */; };
+		CE2A5B052D119C6400CEDCE1 /* ShipsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B042D119C6400CEDCE1 /* ShipsAppUITests.swift */; };
+		CE2A5B072D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B062D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift */; };
+		CE2A5B1B2D1312A400CEDCE1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B1A2D1312A400CEDCE1 /* LoginViewModel.swift */; };
+		CE2A5B1D2D1312B900CEDCE1 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B1C2D1312B900CEDCE1 /* Reusable.swift */; };
+		CE2A5B202D1313B100CEDCE1 /* NetworkMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B1F2D1313B100CEDCE1 /* NetworkMonitorService.swift */; };
+		CE2A5B232D1314ED00CEDCE1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5B222D1314ED00CEDCE1 /* RxCocoa */; };
+		CE2A5B252D1314ED00CEDCE1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5B242D1314ED00CEDCE1 /* RxSwift */; };
+		CE2A5B272D1314ED00CEDCE1 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5B262D1314ED00CEDCE1 /* RxTest */; };
+		CE2A5B2A2D13163F00CEDCE1 /* ShipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B292D13163F00CEDCE1 /* ShipModel.swift */; };
+		CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B2D2D1316BA00CEDCE1 /* AllShipsViewController.swift */; };
+		CE2A5B302D1316D100CEDCE1 /* AllShipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */; };
+		CE2A5B322D1316EB00CEDCE1 /* ShipDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */; };
+		CE2A5B342D13170900CEDCE1 /* ShipDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */; };
+		CE2A5B362D13462200CEDCE1 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B352D13462200CEDCE1 /* CustomTextFieldView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE2A5AF72D119C6400CEDCE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE2A5AD52D119C6200CEDCE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE2A5ADC2D119C6200CEDCE1;
+			remoteInfo = ShipsApp;
+		};
+		CE2A5B012D119C6400CEDCE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE2A5AD52D119C6200CEDCE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE2A5ADC2D119C6200CEDCE1;
+			remoteInfo = ShipsApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CE2A5ADD2D119C6200CEDCE1 /* ShipsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShipsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2A5AE02D119C6200CEDCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CE2A5AE22D119C6200CEDCE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CE2A5AE42D119C6200CEDCE1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CE2A5AEA2D119C6200CEDCE1 /* ShipsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShipsApp.xcdatamodel; sourceTree = "<group>"; };
+		CE2A5AEC2D119C6400CEDCE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE2A5AEF2D119C6400CEDCE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE2A5AF12D119C6400CEDCE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE2A5AF62D119C6400CEDCE1 /* ShipsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShipsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2A5AFA2D119C6400CEDCE1 /* ShipsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipsAppTests.swift; sourceTree = "<group>"; };
+		CE2A5B002D119C6400CEDCE1 /* ShipsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShipsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2A5B042D119C6400CEDCE1 /* ShipsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipsAppUITests.swift; sourceTree = "<group>"; };
+		CE2A5B062D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE2A5B1A2D1312A400CEDCE1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		CE2A5B1C2D1312B900CEDCE1 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		CE2A5B1F2D1313B100CEDCE1 /* NetworkMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorService.swift; sourceTree = "<group>"; };
+		CE2A5B292D13163F00CEDCE1 /* ShipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipModel.swift; sourceTree = "<group>"; };
+		CE2A5B2D2D1316BA00CEDCE1 /* AllShipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShipsViewController.swift; sourceTree = "<group>"; };
+		CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShipsViewModel.swift; sourceTree = "<group>"; };
+		CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailsViewController.swift; sourceTree = "<group>"; };
+		CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailsViewModel.swift; sourceTree = "<group>"; };
+		CE2A5B352D13462200CEDCE1 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE2A5ADA2D119C6200CEDCE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2A5B252D1314ED00CEDCE1 /* RxSwift in Frameworks */,
+				CE2A5B232D1314ED00CEDCE1 /* RxCocoa in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE2A5AF32D119C6400CEDCE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2A5B272D1314ED00CEDCE1 /* RxTest in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE2A5AFD2D119C6400CEDCE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE2A5AD42D119C6200CEDCE1 = {
+			isa = PBXGroup;
+			children = (
+				CE2A5ADF2D119C6200CEDCE1 /* ShipsApp */,
+				CE2A5AF92D119C6400CEDCE1 /* ShipsAppTests */,
+				CE2A5B032D119C6400CEDCE1 /* ShipsAppUITests */,
+				CE2A5ADE2D119C6200CEDCE1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CE2A5ADE2D119C6200CEDCE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5ADD2D119C6200CEDCE1 /* ShipsApp.app */,
+				CE2A5AF62D119C6400CEDCE1 /* ShipsAppTests.xctest */,
+				CE2A5B002D119C6400CEDCE1 /* ShipsAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE2A5ADF2D119C6200CEDCE1 /* ShipsApp */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B282D13163100CEDCE1 /* Models */,
+				CE2A5B182D130FE400CEDCE1 /* LoginModule */,
+				CE2A5B2B2D13168900CEDCE1 /* AllShipsModule */,
+				CE2A5B2C2D13169800CEDCE1 /* ShipDetailsModule */,
+				CE2A5B1E2D13139E00CEDCE1 /* Services */,
+				CE2A5B172D130FDD00CEDCE1 /* CoreData */,
+				CE2A5B162D130FD800CEDCE1 /* Helpers */,
+				CE2A5B152D130FD200CEDCE1 /* Views */,
+				CE2A5B142D130FCA00CEDCE1 /* Extensions */,
+				CE2A5B132D130FC000CEDCE1 /* Application */,
+				CE2A5B192D130FEF00CEDCE1 /* Resources */,
+			);
+			path = ShipsApp;
+			sourceTree = "<group>";
+		};
+		CE2A5AF92D119C6400CEDCE1 /* ShipsAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AFA2D119C6400CEDCE1 /* ShipsAppTests.swift */,
+			);
+			path = ShipsAppTests;
+			sourceTree = "<group>";
+		};
+		CE2A5B032D119C6400CEDCE1 /* ShipsAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B042D119C6400CEDCE1 /* ShipsAppUITests.swift */,
+				CE2A5B062D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift */,
+			);
+			path = ShipsAppUITests;
+			sourceTree = "<group>";
+		};
+		CE2A5B132D130FC000CEDCE1 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AE02D119C6200CEDCE1 /* AppDelegate.swift */,
+				CE2A5AE22D119C6200CEDCE1 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		CE2A5B142D130FCA00CEDCE1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE2A5B152D130FD200CEDCE1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B352D13462200CEDCE1 /* CustomTextFieldView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE2A5B162D130FD800CEDCE1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B1C2D1312B900CEDCE1 /* Reusable.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CE2A5B172D130FDD00CEDCE1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		CE2A5B182D130FE400CEDCE1 /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AE42D119C6200CEDCE1 /* LoginViewController.swift */,
+				CE2A5B1A2D1312A400CEDCE1 /* LoginViewModel.swift */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		CE2A5B192D130FEF00CEDCE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AEC2D119C6400CEDCE1 /* Assets.xcassets */,
+				CE2A5AEE2D119C6400CEDCE1 /* LaunchScreen.storyboard */,
+				CE2A5AF12D119C6400CEDCE1 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE2A5B1E2D13139E00CEDCE1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B1F2D1313B100CEDCE1 /* NetworkMonitorService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CE2A5B282D13163100CEDCE1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B292D13163F00CEDCE1 /* ShipModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE2A5B2B2D13168900CEDCE1 /* AllShipsModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B2D2D1316BA00CEDCE1 /* AllShipsViewController.swift */,
+				CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */,
+			);
+			path = AllShipsModule;
+			sourceTree = "<group>";
+		};
+		CE2A5B2C2D13169800CEDCE1 /* ShipDetailsModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */,
+				CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */,
+			);
+			path = ShipDetailsModule;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE2A5ADC2D119C6200CEDCE1 /* ShipsApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE2A5B0A2D119C6400CEDCE1 /* Build configuration list for PBXNativeTarget "ShipsApp" */;
+			buildPhases = (
+				CE2A5AD92D119C6200CEDCE1 /* Sources */,
+				CE2A5ADA2D119C6200CEDCE1 /* Frameworks */,
+				CE2A5ADB2D119C6200CEDCE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShipsApp;
+			packageProductDependencies = (
+				CE2A5B222D1314ED00CEDCE1 /* RxCocoa */,
+				CE2A5B242D1314ED00CEDCE1 /* RxSwift */,
+			);
+			productName = ShipsApp;
+			productReference = CE2A5ADD2D119C6200CEDCE1 /* ShipsApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CE2A5AF52D119C6400CEDCE1 /* ShipsAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE2A5B0D2D119C6400CEDCE1 /* Build configuration list for PBXNativeTarget "ShipsAppTests" */;
+			buildPhases = (
+				CE2A5AF22D119C6400CEDCE1 /* Sources */,
+				CE2A5AF32D119C6400CEDCE1 /* Frameworks */,
+				CE2A5AF42D119C6400CEDCE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE2A5AF82D119C6400CEDCE1 /* PBXTargetDependency */,
+			);
+			name = ShipsAppTests;
+			packageProductDependencies = (
+				CE2A5B262D1314ED00CEDCE1 /* RxTest */,
+			);
+			productName = ShipsAppTests;
+			productReference = CE2A5AF62D119C6400CEDCE1 /* ShipsAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CE2A5AFF2D119C6400CEDCE1 /* ShipsAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE2A5B102D119C6400CEDCE1 /* Build configuration list for PBXNativeTarget "ShipsAppUITests" */;
+			buildPhases = (
+				CE2A5AFC2D119C6400CEDCE1 /* Sources */,
+				CE2A5AFD2D119C6400CEDCE1 /* Frameworks */,
+				CE2A5AFE2D119C6400CEDCE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE2A5B022D119C6400CEDCE1 /* PBXTargetDependency */,
+			);
+			name = ShipsAppUITests;
+			productName = ShipsAppUITests;
+			productReference = CE2A5B002D119C6400CEDCE1 /* ShipsAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE2A5AD52D119C6200CEDCE1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					CE2A5ADC2D119C6200CEDCE1 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					CE2A5AF52D119C6400CEDCE1 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = CE2A5ADC2D119C6200CEDCE1;
+					};
+					CE2A5AFF2D119C6400CEDCE1 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = CE2A5ADC2D119C6200CEDCE1;
+					};
+				};
+			};
+			buildConfigurationList = CE2A5AD82D119C6200CEDCE1 /* Build configuration list for PBXProject "ShipsApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE2A5AD42D119C6200CEDCE1;
+			packageReferences = (
+				CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
+			productRefGroup = CE2A5ADE2D119C6200CEDCE1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE2A5ADC2D119C6200CEDCE1 /* ShipsApp */,
+				CE2A5AF52D119C6400CEDCE1 /* ShipsAppTests */,
+				CE2A5AFF2D119C6400CEDCE1 /* ShipsAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE2A5ADB2D119C6200CEDCE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2A5AED2D119C6400CEDCE1 /* Assets.xcassets in Resources */,
+				CE2A5AF02D119C6400CEDCE1 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE2A5AF42D119C6400CEDCE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE2A5AFE2D119C6400CEDCE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE2A5AD92D119C6200CEDCE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2A5B362D13462200CEDCE1 /* CustomTextFieldView.swift in Sources */,
+				CE2A5B1D2D1312B900CEDCE1 /* Reusable.swift in Sources */,
+				CE2A5AE52D119C6200CEDCE1 /* LoginViewController.swift in Sources */,
+				CE2A5B202D1313B100CEDCE1 /* NetworkMonitorService.swift in Sources */,
+				CE2A5B342D13170900CEDCE1 /* ShipDetailsViewModel.swift in Sources */,
+				CE2A5AEB2D119C6200CEDCE1 /* ShipsApp.xcdatamodeld in Sources */,
+				CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */,
+				CE2A5AE12D119C6200CEDCE1 /* AppDelegate.swift in Sources */,
+				CE2A5B1B2D1312A400CEDCE1 /* LoginViewModel.swift in Sources */,
+				CE2A5AE32D119C6200CEDCE1 /* SceneDelegate.swift in Sources */,
+				CE2A5B302D1316D100CEDCE1 /* AllShipsViewModel.swift in Sources */,
+				CE2A5B2A2D13163F00CEDCE1 /* ShipModel.swift in Sources */,
+				CE2A5B322D1316EB00CEDCE1 /* ShipDetailsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE2A5AF22D119C6400CEDCE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2A5AFB2D119C6400CEDCE1 /* ShipsAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE2A5AFC2D119C6400CEDCE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2A5B072D119C6400CEDCE1 /* ShipsAppUITestsLaunchTests.swift in Sources */,
+				CE2A5B052D119C6400CEDCE1 /* ShipsAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE2A5AF82D119C6400CEDCE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE2A5ADC2D119C6200CEDCE1 /* ShipsApp */;
+			targetProxy = CE2A5AF72D119C6400CEDCE1 /* PBXContainerItemProxy */;
+		};
+		CE2A5B022D119C6400CEDCE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE2A5ADC2D119C6200CEDCE1 /* ShipsApp */;
+			targetProxy = CE2A5B012D119C6400CEDCE1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CE2A5AEE2D119C6400CEDCE1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE2A5AEF2D119C6400CEDCE1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CE2A5B082D119C6400CEDCE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CE2A5B092D119C6400CEDCE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE2A5B0B2D119C6400CEDCE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShipsApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kopats.dzmitry.ShipsApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE2A5B0C2D119C6400CEDCE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShipsApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kopats.dzmitry.ShipsApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CE2A5B0E2D119C6400CEDCE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 67G4B948ZP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kopats.dzmitry.ShipsAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShipsApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ShipsApp";
+			};
+			name = Debug;
+		};
+		CE2A5B0F2D119C6400CEDCE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 67G4B948ZP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kopats.dzmitry.ShipsAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShipsApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ShipsApp";
+			};
+			name = Release;
+		};
+		CE2A5B112D119C6400CEDCE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 67G4B948ZP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kopats.dzmitry.ShipsAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ShipsApp;
+			};
+			name = Debug;
+		};
+		CE2A5B122D119C6400CEDCE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 67G4B948ZP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kopats.dzmitry.ShipsAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ShipsApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE2A5AD82D119C6200CEDCE1 /* Build configuration list for PBXProject "ShipsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE2A5B082D119C6400CEDCE1 /* Debug */,
+				CE2A5B092D119C6400CEDCE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE2A5B0A2D119C6400CEDCE1 /* Build configuration list for PBXNativeTarget "ShipsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE2A5B0B2D119C6400CEDCE1 /* Debug */,
+				CE2A5B0C2D119C6400CEDCE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE2A5B0D2D119C6400CEDCE1 /* Build configuration list for PBXNativeTarget "ShipsAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE2A5B0E2D119C6400CEDCE1 /* Debug */,
+				CE2A5B0F2D119C6400CEDCE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE2A5B102D119C6400CEDCE1 /* Build configuration list for PBXNativeTarget "ShipsAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE2A5B112D119C6400CEDCE1 /* Debug */,
+				CE2A5B122D119C6400CEDCE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE2A5B222D1314ED00CEDCE1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		CE2A5B242D1314ED00CEDCE1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		CE2A5B262D1314ED00CEDCE1 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5B212D13140800CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE2A5AEA2D119C6200CEDCE1 /* ShipsApp.xcdatamodel */,
+			);
+			currentVersion = CE2A5AEA2D119C6200CEDCE1 /* ShipsApp.xcdatamodel */;
+			path = ShipsApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CE2A5AD52D119C6200CEDCE1 /* Project object */;
+}
