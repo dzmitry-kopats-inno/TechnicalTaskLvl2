@@ -7,9 +7,12 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 private enum Constants {
     static let commonSpacing: CGFloat = 8.0
+    static let cornerRadius: CGFloat = 8.0
+    static let textFieldHeight: CGFloat = 40.0
 }
 
 enum CustomTextFieldType {
@@ -33,13 +36,18 @@ final class CustomTextFieldView: UIView {
         return label
     }()
     
-    private let textField: UITextField = {
+    private(set) var textField: UITextField = {
         let textField = UITextField()
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1.0
-        textField.layer.cornerRadius = 8.0
+        textField.layer.cornerRadius = Constants.cornerRadius
         textField.font = .systemFont(ofSize: 14)
-        textField.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        textField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight).isActive = true
+        textField.textColor = .black
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Enter text",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         return textField
     }()
     
@@ -52,10 +60,10 @@ final class CustomTextFieldView: UIView {
     }()
 
     // MARK: - Life cycle
-    init(labelText: String, type: CustomTextFieldType = .requiredText) {
+    init(labelText: String, type: CustomTextFieldType = .requiredText, placeholder: String? = nil) {
         self.type = type
         super.init(frame: .zero)
-        setupUI(labelText: labelText)
+        setupUI(labelText: labelText, placeholder: placeholder)
     }
 
     required init?(coder: NSCoder) {
@@ -77,12 +85,19 @@ final class CustomTextFieldView: UIView {
 }
 
 private extension CustomTextFieldView {
-    func setupUI(labelText: String) {
+    func setupUI(labelText: String, placeholder: String?) {
         label.text = labelText
 
         if type == .email {
             textField.keyboardType = .emailAddress
             textField.autocapitalizationType = .none
+        }
+        
+        if let placeholder {
+            textField.attributedPlaceholder = NSAttributedString(
+                string: placeholder,
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+            )
         }
 
         addSubview(stackView)
@@ -93,5 +108,11 @@ private extension CustomTextFieldView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+}
+
+extension Reactive where Base: CustomTextFieldView {
+    var text: ControlProperty<String?> {
+        base.textField.rx.text
     }
 }
