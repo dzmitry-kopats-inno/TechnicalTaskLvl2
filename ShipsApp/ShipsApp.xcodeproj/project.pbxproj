@@ -10,7 +10,7 @@
 		CE2A5AE12D119C6200CEDCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE02D119C6200CEDCE1 /* AppDelegate.swift */; };
 		CE2A5AE32D119C6200CEDCE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE22D119C6200CEDCE1 /* SceneDelegate.swift */; };
 		CE2A5AE52D119C6200CEDCE1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE42D119C6200CEDCE1 /* LoginViewController.swift */; };
-		CE2A5AEB2D119C6200CEDCE1 /* ShipsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */; };
+		CE2A5AEB2D119C6200CEDCE1 /* ShipModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AE92D119C6200CEDCE1 /* ShipModel.xcdatamodeld */; };
 		CE2A5AED2D119C6400CEDCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2A5AEC2D119C6400CEDCE1 /* Assets.xcassets */; };
 		CE2A5AF02D119C6400CEDCE1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE2A5AEF2D119C6400CEDCE1 /* Base */; };
 		CE2A5AFB2D119C6400CEDCE1 /* ShipsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AFA2D119C6400CEDCE1 /* ShipsAppTests.swift */; };
@@ -34,6 +34,9 @@
 		CE2A5B3E2D15841C00CEDCE1 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B3D2D15841C00CEDCE1 /* AppError.swift */; };
 		CE2A5B402D15870500CEDCE1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B3F2D15870500CEDCE1 /* UIViewController+Extension.swift */; };
 		CE2A5B422D1590A400CEDCE1 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B412D1590A400CEDCE1 /* UserRepository.swift */; };
+		CE2A5B492D15B9F000CEDCE1 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B482D15B9F000CEDCE1 /* Endpoint.swift */; };
+		CE2A5B4B2D15BA4C00CEDCE1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B4A2D15BA4C00CEDCE1 /* NetworkError.swift */; };
+		CE2A5B4D2D15BBD000CEDCE1 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B4C2D15BBD000CEDCE1 /* RequestBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +85,9 @@
 		CE2A5B3D2D15841C00CEDCE1 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		CE2A5B3F2D15870500CEDCE1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		CE2A5B412D1590A400CEDCE1 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		CE2A5B482D15B9F000CEDCE1 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CE2A5B4A2D15BA4C00CEDCE1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		CE2A5B4C2D15BBD000CEDCE1 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +210,7 @@
 		CE2A5B172D130FDD00CEDCE1 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */,
+				CE2A5AE92D119C6200CEDCE1 /* ShipModel.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -231,9 +237,9 @@
 		CE2A5B1E2D13139E00CEDCE1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A5B472D15B9D400CEDCE1 /* Network */,
 				CE2A5B1F2D1313B100CEDCE1 /* NetworkMonitorService.swift */,
 				CE2A5B372D15730000CEDCE1 /* ValidationService.swift */,
-				CE2A5B392D15755500CEDCE1 /* NetworkService.swift */,
 				CE2A5B3B2D15812C00CEDCE1 /* LoginService.swift */,
 				CE2A5B412D1590A400CEDCE1 /* UserRepository.swift */,
 			);
@@ -264,6 +270,17 @@
 				CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */,
 			);
 			path = ShipDetailsModule;
+			sourceTree = "<group>";
+		};
+		CE2A5B472D15B9D400CEDCE1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5B392D15755500CEDCE1 /* NetworkService.swift */,
+				CE2A5B482D15B9F000CEDCE1 /* Endpoint.swift */,
+				CE2A5B4A2D15BA4C00CEDCE1 /* NetworkError.swift */,
+				CE2A5B4C2D15BBD000CEDCE1 /* RequestBuilder.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,13 +430,16 @@
 				CE2A5B202D1313B100CEDCE1 /* NetworkMonitorService.swift in Sources */,
 				CE2A5B3E2D15841C00CEDCE1 /* AppError.swift in Sources */,
 				CE2A5B342D13170900CEDCE1 /* ShipDetailsViewModel.swift in Sources */,
-				CE2A5AEB2D119C6200CEDCE1 /* ShipsApp.xcdatamodeld in Sources */,
+				CE2A5B4D2D15BBD000CEDCE1 /* RequestBuilder.swift in Sources */,
+				CE2A5AEB2D119C6200CEDCE1 /* ShipModel.xcdatamodeld in Sources */,
 				CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */,
 				CE2A5B3C2D15812C00CEDCE1 /* LoginService.swift in Sources */,
 				CE2A5AE12D119C6200CEDCE1 /* AppDelegate.swift in Sources */,
 				CE2A5B1B2D1312A400CEDCE1 /* LoginViewModel.swift in Sources */,
 				CE2A5AE32D119C6200CEDCE1 /* SceneDelegate.swift in Sources */,
 				CE2A5B3A2D15755500CEDCE1 /* NetworkService.swift in Sources */,
+				CE2A5B492D15B9F000CEDCE1 /* Endpoint.swift in Sources */,
+				CE2A5B4B2D15BA4C00CEDCE1 /* NetworkError.swift in Sources */,
 				CE2A5B382D15730000CEDCE1 /* ValidationService.swift in Sources */,
 				CE2A5B302D1316D100CEDCE1 /* AllShipsViewModel.swift in Sources */,
 				CE2A5B2A2D13163F00CEDCE1 /* ShipModel.swift in Sources */,
@@ -804,13 +824,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		CE2A5AE92D119C6200CEDCE1 /* ShipsApp.xcdatamodeld */ = {
+		CE2A5AE92D119C6200CEDCE1 /* ShipModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				CE2A5AEA2D119C6200CEDCE1 /* ShipsApp.xcdatamodel */,
 			);
 			currentVersion = CE2A5AEA2D119C6200CEDCE1 /* ShipsApp.xcdatamodel */;
-			path = ShipsApp.xcdatamodeld;
+			path = ShipModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

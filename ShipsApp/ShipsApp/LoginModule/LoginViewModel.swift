@@ -34,6 +34,11 @@ final class LoginViewModel {
             return
         }
         
+        guard validationService.isValid(email) else {
+            errorSubject.onNext(AppError(message: "Invalid email format: \(email)"))
+            return
+        }
+        
         loginService.login(email: email, password: password)
             .subscribe { [weak self] in
                 guard let self else { return }
