@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 private enum Constants {
     static let commonSpacing: CGFloat = 8.0
@@ -35,7 +36,7 @@ final class CustomTextFieldView: UIView {
         return label
     }()
     
-    private let textField: UITextField = {
+    private(set) var textField: UITextField = {
         let textField = UITextField()
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1.0
@@ -107,5 +108,11 @@ private extension CustomTextFieldView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+}
+
+extension Reactive where Base: CustomTextFieldView {
+    var text: ControlProperty<String?> {
+        base.textField.rx.text
     }
 }
