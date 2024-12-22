@@ -13,12 +13,10 @@ protocol NetworkService {
 }
 
 final class AppNetworkManager: NetworkService {
-    // MARK: - Properties
     private let session: URLSession
     private let decoder: JSONDecoder
     private let requestBuilder: RequestBuilder
     
-    // MARK: - Life cycle
     init(
         timeout: TimeInterval = 5,
         decoder: JSONDecoder = JSONDecoder(),
@@ -31,7 +29,6 @@ final class AppNetworkManager: NetworkService {
         self.requestBuilder = requestBuilder
     }
     
-    // MARK: - Methods
     func request<T: Decodable>(endpoint: Endpoint) -> Observable<T> {
         do {
             let urlRequest = try requestBuilder.build(for: endpoint)

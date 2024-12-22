@@ -21,7 +21,6 @@ enum CustomTextFieldType {
 }
 
 final class CustomTextFieldView: UIView {
-    // MARK: - Properties
     private let type: CustomTextFieldType
     
     var text: String? {
@@ -29,7 +28,6 @@ final class CustomTextFieldView: UIView {
         set { textField.text = newValue }
     }
     
-    // MARK: - GUI Properties
     private let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .medium)
@@ -59,7 +57,6 @@ final class CustomTextFieldView: UIView {
         return stackView
     }()
 
-    // MARK: - Life cycle
     init(labelText: String, type: CustomTextFieldType = .requiredText, placeholder: String? = nil) {
         self.type = type
         super.init(frame: .zero)
@@ -70,7 +67,6 @@ final class CustomTextFieldView: UIView {
         nil
     }
     
-    // MARK: - Methods
     func setBorderColor(_ color: UIColor) {
         textField.layer.borderColor = color.cgColor
     }
