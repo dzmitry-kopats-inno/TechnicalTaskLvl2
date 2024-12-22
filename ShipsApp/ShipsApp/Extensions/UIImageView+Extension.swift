@@ -8,14 +8,15 @@
 import UIKit
 
 extension UIImageView {
-    func loadImage(from url: URL) {
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let self = self, let data = data, error == nil else {
+    func loadImage(from url: URL, completion: @escaping () -> Void) {
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let self, let data, error == nil else {
                 return
             }
             
             DispatchQueue.main.async {
                 self.image = UIImage(data: data)
+                completion()
             }
         }.resume()
     }

@@ -11,7 +11,7 @@ import RxCocoa
 
 private enum Constants {
     static let headerHeight: CGFloat = 40.0
-    static let estimatedRowHeight: CGFloat = 100.0
+    static let estimatedRowHeight: CGFloat = 112.0
     static let headerTitle = "Full list of ships"
     static let screenTitle = "All ships"
 }
@@ -115,6 +115,18 @@ private extension AllShipsViewController {
             .subscribe(onNext: { [weak self] error in
                 guard let self else { return }
                 showError(error)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.isNetworkAvailable
+            .subscribe(onNext: { [weak self] isAvailable in
+                guard let self else { return }
+                if isAvailable {
+                    // TODO: - Need to hide alert?
+                } else {
+                    // TODO: - Hide alert
+                    showNoNetworkAlert()
+                }
             })
             .disposed(by: disposeBag)
     }

@@ -15,11 +15,22 @@ private enum Constants {
     static let contentViewCornerRadius: CGFloat = 16.0
     static let contentViewBorderWidth: CGFloat = 1.0
     static let contentViewBorderColor: UIColor = .lightGray
-    static let cellPadding: CGFloat = 16.0
+    static let cellPadding: CGFloat = 8.0
     static let verticalSpacing: CGFloat = 4.0
 }
 
 final class ShipInfoTableViewCell: UITableViewCell, Reusable {
+    
+    private let borderView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = Constants.contentViewCornerRadius
+        view.layer.borderWidth = Constants.contentViewBorderWidth
+        view.layer.borderColor = Constants.contentViewBorderColor.cgColor
+        view.clipsToBounds = true
+        return view
+    }()
+    
     private let shipImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,51 +74,67 @@ final class ShipInfoTableViewCell: UITableViewCell, Reusable {
         setupUI()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        shipImageView.image = nil
+        nameLabel.text = nil
+        typeLabel.text = nil
+        yearBuiltLabel.text = nil
+    }
+    
     func configure(with ship: ShipModel) {
         nameLabel.text = ship.name
         typeLabel.text = ship.type
         yearBuiltLabel.text = ship.yearBuilt.map { "Year Built: \($0)" }
         
         if let imageUrlString = ship.image, let imageUrl = URL(string: imageUrlString) {
-            shipImageView.loadImage(from: imageUrl)
+            shipImageView.loadImage(from: imageUrl) { [weak self] in
+                DispatchQueue.main.async {
+                    self?.setNeedsLayout()
+                }
+            }
         }
     }
 }
 
 private extension ShipInfoTableViewCell {
     func setupUI() {
-        contentView.layer.cornerRadius = Constants.contentViewCornerRadius
-        contentView.layer.borderWidth = Constants.contentViewBorderWidth
-        contentView.layer.borderColor = Constants.contentViewBorderColor.cgColor
-        contentView.clipsToBounds = true
-        
-        contentView.addSubview(shipImageView)
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(typeLabel)
-        contentView.addSubview(yearBuiltLabel)
+        contentView.addSubview(borderView)
+        borderView.addSubview(shipImageView)
+        borderView.addSubview(nameLabel)
+        borderView.addSubview(typeLabel)
+        borderView.addSubview(yearBuiltLabel)
         
         setupConstraints()
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            shipImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.cellPadding),
-            shipImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            borderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.cellPadding),
+            borderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.cellPadding),
+            borderView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.cellPadding),
+            borderView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.cellPadding),
+            
+            shipImageView.leadingAnchor.constraint(equalTo: borderView.leadingAnchor, constant: Constants.cellPadding),
+            shipImageView.centerYAnchor.constraint(equalTo: borderView.centerYAnchor),
             shipImageView.widthAnchor.constraint(equalToConstant: Constants.imageViewSize),
             shipImageView.heightAnchor.constraint(equalToConstant: Constants.imageViewSize),
+            shipImageView.topAnchor.constraint(greaterThanOrEqualTo: borderView.topAnchor, constant: Constants.cellPadding),
+            shipImageView.bottomAnchor.constraint(greaterThanOrEqualTo: borderView.bottomAnchor, constant: -Constants.cellPadding),
             
             nameLabel.leadingAnchor.constraint(equalTo: shipImageView.trailingAnchor, constant: Constants.cellPadding),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.cellPadding),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.cellPadding),
+            nameLabel.topAnchor.constraint(equalTo: borderView.topAnchor, constant: Constants.cellPadding),
+            nameLabel.trailingAnchor.constraint(equalTo: borderView.trailingAnchor, constant: -Constants.cellPadding),
             
             typeLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             typeLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Constants.verticalSpacing),
-            typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.cellPadding),
+            typeLabel.trailingAnchor.constraint(equalTo: borderView.trailingAnchor, constant: -Constants.cellPadding),
             
             yearBuiltLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             yearBuiltLabel.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: Constants.verticalSpacing),
-            yearBuiltLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.cellPadding),
-            yearBuiltLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.cellPadding)
+            yearBuiltLabel.trailingAnchor.constraint(equalTo: borderView.trailingAnchor, constant: -Constants.cellPadding),
+            yearBuiltLabel.bottomAnchor.constraint(lessThanOrEqualTo: borderView.bottomAnchor, constant: -Constants.cellPadding)
         ])
     }
 }
