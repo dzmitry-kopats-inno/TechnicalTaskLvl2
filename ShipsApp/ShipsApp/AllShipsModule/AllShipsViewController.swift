@@ -68,6 +68,19 @@ extension AllShipsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { Constants.headerHeight }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.ships
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] ships in
+                guard let self else { return }
+                
+                let ship = ships[indexPath.row]
+                self.navigateToShipDetailsScreen(with: ship)
+                tableView.deselectRow(at: indexPath, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 private extension AllShipsViewController {
@@ -163,10 +176,9 @@ private extension AllShipsViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
     }
     
-    func navigateToShipDetailsScreen() {
+    func navigateToShipDetailsScreen(with ship: ShipModel) {
         // TODO: Open ShipDetailsViewController
         
         // TODO: Present modally
