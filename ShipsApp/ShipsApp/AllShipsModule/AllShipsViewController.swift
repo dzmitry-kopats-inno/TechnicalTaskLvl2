@@ -151,6 +151,19 @@ private extension AllShipsViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.isRefreshing
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isRefreshing in
+                guard let self else { return }
+                if isRefreshing {
+                    refreshControl.beginRefreshing()
+                } else {
+                    refreshControl.endRefreshing()
+                }
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     func navigateToShipDetailsScreen() {

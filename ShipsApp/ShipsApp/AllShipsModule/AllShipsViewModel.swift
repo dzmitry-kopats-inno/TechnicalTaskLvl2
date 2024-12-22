@@ -13,6 +13,7 @@ final class AllShipsViewModel {
     private let shipsRepository: ShipsRepository
     private let shipsSubject = BehaviorSubject<[ShipModel]>(value: [])
     private let errorSubject = PublishSubject<Error>()
+    private let isRefreshingSubject = BehaviorSubject<Bool>(value: false)
     private let disposeBag = DisposeBag()
     
     var isGuestMode: Bool
@@ -27,6 +28,10 @@ final class AllShipsViewModel {
     
     var isNetworkAvailable: Observable<Bool> {
         networkMonitorService.isNetworkAvailable
+    }
+    
+    var isRefreshing: Observable<Bool> {
+        isRefreshingSubject.asObservable()
     }
     
     init(
@@ -48,15 +53,19 @@ final class AllShipsViewModel {
     }
     
     func fetchShips() {
+        isRefreshingSubject.onNext(true)
+        
         shipsRepository.fetchShips()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] ships in
                 guard let self else { return }
                 let sortedShips = ships.sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
                 shipsSubject.onNext(sortedShips)
+                isRefreshingSubject.onNext(false)
             }, onError: { [weak self] error in
                 guard let self else { return }
                 errorSubject.onNext(error)
+                isRefreshingSubject.onNext(false)
             })
             .disposed(by: disposeBag)
     }
