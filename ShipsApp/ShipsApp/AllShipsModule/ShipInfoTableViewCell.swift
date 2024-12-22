@@ -94,6 +94,8 @@ final class ShipInfoTableViewCell: UITableViewCell, Reusable {
                     self?.setNeedsLayout()
                 }
             }
+        } else {
+            shipImageView.image = UIImage(named: "shipPlaceholder")
         }
     }
 }

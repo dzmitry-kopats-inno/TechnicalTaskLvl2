@@ -15,6 +15,8 @@ final class AllShipsViewModel {
     private let errorSubject = PublishSubject<Error>()
     private let disposeBag = DisposeBag()
     
+    var isGuestMode: Bool
+    
     var ships: Observable<[ShipModel]> {
         shipsSubject.asObservable()
     }
@@ -29,10 +31,12 @@ final class AllShipsViewModel {
     
     init(
         networkMonitorService: NetworkMonitorService,
-        shipsRepository: ShipsRepository
+        shipsRepository: ShipsRepository,
+        isGuestMode: Bool
     ) {
         self.networkMonitorService = networkMonitorService
         self.shipsRepository = shipsRepository
+        self.isGuestMode = isGuestMode
         
         shipsRepository.error
             .observe(on: MainScheduler.instance)

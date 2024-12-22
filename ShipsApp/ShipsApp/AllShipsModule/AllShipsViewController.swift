@@ -14,6 +14,8 @@ private enum Constants {
     static let estimatedRowHeight: CGFloat = 112.0
     static let headerTitle = "Full list of ships"
     static let screenTitle = "All ships"
+    static let logoutTitleGuest = "Exit"
+    static let logoutTitleUser = "Logout"
 }
 
 final class AllShipsViewController: UIViewController {
@@ -75,7 +77,27 @@ private extension AllShipsViewController {
         
         view.addSubview(tableView)
         
+        setupLogoutButton()
         setupLayout()
+    }
+    
+    func setupLogoutButton() {
+        let logoutButtonTitle = viewModel.isGuestMode ? Constants.logoutTitleGuest : Constants.logoutTitleUser
+        let logoutButton = UIBarButtonItem(title: logoutButtonTitle, style: .plain, target: self, action: #selector(handleLogout))
+        navigationItem.rightBarButtonItem = logoutButton
+    }
+    
+    @objc func handleLogout() {
+        navigateToLoginScreen()
+    }
+    
+    func navigateToLoginScreen() {
+        guard let navigationController else {
+            showError(AppError(message: "NavigationController is not available"))
+            return
+        }
+        
+        navigationController.popViewController(animated: true)
     }
     
     func setupLayout() {

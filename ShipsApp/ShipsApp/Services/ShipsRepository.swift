@@ -20,14 +20,23 @@ final class ShipsRepositoryImplementation: ShipsRepository {
     private let errorSubject = PublishSubject<AppError>()
     private let networkService: NetworkService
     private let coreDataService: CoreDataService
+    private let disposeBag = DisposeBag()
     
     var error: Observable<AppError> {
         errorSubject.asObservable()
     }
     
     init(networkService: NetworkService, coreDataService: CoreDataService) {
-            self.networkService = networkService
-            self.coreDataService = coreDataService
+        self.networkService = networkService
+        self.coreDataService = coreDataService
+        
+        coreDataService.error
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] error in
+                guard let self else { return }
+                errorSubject.onNext(error)
+            })
+            .disposed(by: disposeBag)
     }
     
     func fetchShips() -> Observable<[ShipModel]> {

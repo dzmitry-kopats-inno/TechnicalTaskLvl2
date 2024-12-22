@@ -210,9 +210,10 @@ private extension LoginViewController {
         
         let viewModel = AllShipsViewModel(
             networkMonitorService: networkServiceMonitor,
-            shipsRepository: shipRepository
+            shipsRepository: shipRepository,
+            isGuestMode: isGuestMode
         )
-        // TODO: - Use isGuestMode property
+        
         let allShipsViewController = AllShipsViewController(viewModel: viewModel)
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(allShipsViewController, animated: true)
