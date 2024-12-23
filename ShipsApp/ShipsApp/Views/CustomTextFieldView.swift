@@ -31,17 +31,16 @@ final class CustomTextFieldView: UIView {
     private let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.textColor = .label
         return label
     }()
     
     private(set) var textField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1.0
         textField.layer.cornerRadius = Constants.cornerRadius
         textField.font = .systemFont(ofSize: 14)
         textField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight).isActive = true
-        textField.textColor = .black
         textField.attributedPlaceholder = NSAttributedString(
             string: "Enter text",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
@@ -60,6 +59,8 @@ final class CustomTextFieldView: UIView {
     init(labelText: String, type: CustomTextFieldType = .requiredText, placeholder: String? = nil) {
         self.type = type
         super.init(frame: .zero)
+        
+        setBorderColor(.textFieldText)
         setupUI(labelText: labelText, placeholder: placeholder)
     }
 
@@ -67,22 +68,23 @@ final class CustomTextFieldView: UIView {
         nil
     }
     
-    func setBorderColor(_ color: UIColor) {
-        textField.layer.borderColor = color.cgColor
-    }
-    
     func validate() {
         guard let text = text, !text.isEmpty else {
             setBorderColor(.red)
             return
         }
-        setBorderColor(.black)
+        setBorderColor(.textFieldText)
     }
 }
 
 private extension CustomTextFieldView {
+    func setBorderColor(_ color: UIColor) {
+        textField.layer.borderColor = color.cgColor
+    }
+    
     func setupUI(labelText: String, placeholder: String?) {
         label.text = labelText
+        textField.textColor = .textFieldText
 
         if type == .email {
             textField.keyboardType = .emailAddress
@@ -98,6 +100,10 @@ private extension CustomTextFieldView {
 
         addSubview(stackView)
         
+        setupLayout()
+    }
+    
+    func setupLayout() {
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),

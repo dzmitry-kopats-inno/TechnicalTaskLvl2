@@ -43,13 +43,7 @@ final class AllShipsViewModel {
         self.shipsRepository = shipsRepository
         self.isGuestMode = isGuestMode
         
-        shipsRepository.error
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] error in
-                guard let self else { return }
-                errorSubject.onNext(error)
-            })
-            .disposed(by: disposeBag)
+        observeRepositoryErrors()
     }
     
     func fetchShips() {
@@ -64,6 +58,20 @@ final class AllShipsViewModel {
                 isRefreshingSubject.onNext(false)
             }, onError: { [weak self] error in
                 guard let self else { return }
+                networkMonitorService.isNetworkAvailable
+                    .take(1)
+                    .subscribe(onNext: { [weak self] isAvailable in
+                        guard let self else { return }
+                        if !isAvailable {
+                            shipsRepository.fetchCachedShips()
+                                .subscribe(onNext: { [weak self] cachedShips in
+                                    guard let self else { return }
+                                    shipsSubject.onNext(cachedShips)
+                                })
+                                .disposed(by: disposeBag)
+                        }
+                    })
+                    .disposed(by: disposeBag)
                 errorSubject.onNext(error)
                 isRefreshingSubject.onNext(false)
             })
@@ -83,5 +91,21 @@ final class AllShipsViewModel {
         } catch {
             errorSubject.onNext(error)
         }
+    }
+    
+    func getNetworkMonitorService() -> NetworkMonitorService {
+        networkMonitorService
+    }
+}
+
+private extension AllShipsViewModel {
+    func observeRepositoryErrors() {
+        shipsRepository.error
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] error in
+                guard let self else { return }
+                errorSubject.onNext(error)
+            })
+            .disposed(by: disposeBag)
     }
 }

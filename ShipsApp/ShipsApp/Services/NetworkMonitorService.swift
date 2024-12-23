@@ -17,7 +17,7 @@ protocol NetworkMonitorService {
 final class NetworkMonitorServiceImplementation: NetworkMonitorService {
     private let monitor: NWPathMonitor
     private let queue = DispatchQueue(label: "NetworkMonitorQueue")
-    private let networkStatusSubject = BehaviorSubject<Bool>(value: false)
+    private let networkStatusSubject: BehaviorSubject<Bool>
     
     var isNetworkAvailable: Observable<Bool> {
         networkStatusSubject.asObservable()
@@ -25,6 +25,8 @@ final class NetworkMonitorServiceImplementation: NetworkMonitorService {
     
     init(monitor: NWPathMonitor = NWPathMonitor()) {
         self.monitor = monitor
+        let initialStatus = monitor.currentPath.status == .satisfied
+        self.networkStatusSubject = BehaviorSubject(value: initialStatus)
     }
     
     func start() {

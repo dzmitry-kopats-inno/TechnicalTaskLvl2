@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 final class LoginViewModel {
+    private let networkMonitorService: NetworkMonitorService
     private let validationService: ValidationService
     private let loginService: LoginService
     private let disposeBag = DisposeBag()
@@ -23,9 +24,20 @@ final class LoginViewModel {
         successSubject.asObservable()
     }
     
-    init(validationService: ValidationService, loginService: LoginService) {
+    var isNetworkAvailable: Observable<Bool> {
+        networkMonitorService.isNetworkAvailable
+    }
+    
+    init(
+        networkMonitorService: NetworkMonitorService,
+        validationService: ValidationService,
+        loginService: LoginService
+    ) {
+        self.networkMonitorService = networkMonitorService
         self.validationService = validationService
         self.loginService = loginService
+        
+        networkMonitorService.start()
     }
     
     func login(email: String?, password: String?) {
@@ -48,5 +60,9 @@ final class LoginViewModel {
                 errorSubject.onNext(error)
             }
             .disposed(by: disposeBag)
+    }
+    
+    func getNetworkMonitorService() -> NetworkMonitorService {
+        networkMonitorService
     }
 }

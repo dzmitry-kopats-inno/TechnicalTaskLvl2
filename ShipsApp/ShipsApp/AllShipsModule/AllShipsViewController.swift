@@ -16,12 +16,15 @@ private enum Constants {
     static let screenTitle = "All ships"
     static let logoutTitleGuest = "Exit"
     static let logoutTitleUser = "Logout"
+    static let offlineModeTitle = "No internet connection. You’re in Offline mode"
 }
 
 final class AllShipsViewController: UIViewController {
     private let viewModel: AllShipsViewModel
     private let disposeBag = DisposeBag()
 
+    private var bannerView: BannerView?
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,12 +54,12 @@ final class AllShipsViewController: UIViewController {
         setupUI()
         setupTableView()
         bindViewModel()
+        bindNetworkStatus()
 
         viewModel.fetchShips()
     }
 }
 
-// MARK: UITableViewDelegate
 extension AllShipsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableViewHeaderView.reuseIdentifier),
@@ -68,25 +71,12 @@ extension AllShipsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { Constants.headerHeight }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.ships
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] ships in
-                guard let self else { return }
-                
-                let ship = ships[indexPath.row]
-                self.navigateToShipDetailsScreen(with: ship)
-                tableView.deselectRow(at: indexPath, animated: true)
-            })
-            .disposed(by: disposeBag)
-    }
 }
 
 private extension AllShipsViewController {
     func setupUI() {
+        view.backgroundColor = .systemBackground
         title = Constants.screenTitle
-        view.backgroundColor = .white
         
         view.addSubview(tableView)
         
@@ -101,7 +91,11 @@ private extension AllShipsViewController {
     }
     
     @objc func handleLogout() {
-        navigateToLoginScreen()
+        if viewModel.isGuestMode {
+            showGuestAlert()
+        } else {
+            navigateToLoginScreen()
+        }
     }
     
     func navigateToLoginScreen() {
@@ -111,6 +105,20 @@ private extension AllShipsViewController {
         }
         
         navigationController.popViewController(animated: true)
+    }
+    
+    func showGuestAlert() {
+        let alert = UIAlertController(
+            title: "Thank you!",
+            message: "Thank you for trialing this app.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+            self?.navigateToLoginScreen()
+        }))
+        
+        present(alert, animated: true)
     }
     
     func setupLayout() {
@@ -124,6 +132,18 @@ private extension AllShipsViewController {
     
     func setupTableView() {
         tableView.delegate = self
+        
+        tableView.rx.modelSelected(ShipModel.self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] ship in
+                guard let self else { return }
+                
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    navigateToShipDetailsScreen(with: ship)
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
         
         tableView.rx.itemDeleted
             .subscribe(onNext: { [weak self] indexPath in
@@ -150,18 +170,7 @@ private extension AllShipsViewController {
             .subscribe(onNext: { [weak self] error in
                 guard let self else { return }
                 showError(error)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.isNetworkAvailable
-            .subscribe(onNext: { [weak self] isAvailable in
-                guard let self else { return }
-                if isAvailable {
-                    // TODO: - Need to hide alert?
-                } else {
-                    // TODO: - Hide alert
-                    showNoNetworkAlert()
-                }
+                refreshControl.endRefreshing()
             })
             .disposed(by: disposeBag)
         
@@ -178,10 +187,31 @@ private extension AllShipsViewController {
             .disposed(by: disposeBag)
     }
     
+    func bindNetworkStatus() {
+        viewModel.isNetworkAvailable
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isAvailable in
+                guard let self else { return }
+                if isAvailable {
+                    bannerView?.dismiss()
+                    bannerView = nil
+                    viewModel.fetchShips()
+                } else if bannerView == nil {
+                    bannerView = BannerView(message: Constants.offlineModeTitle)
+                    bannerView?.show(in: self.view)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func navigateToShipDetailsScreen(with ship: ShipModel) {
-        // TODO: Open ShipDetailsViewController
-        
-        // TODO: Present modally
+        let viewModel = ShipDetailsViewModel(ship: ship, 
+                                             networkMonitorService: viewModel.getNetworkMonitorService())
+        let shipDetailsViewController = ShipDetailsViewController(viewModel: viewModel)
+        shipDetailsViewController.modalPresentationStyle = .custom
+        shipDetailsViewController.transitioningDelegate = self
+
+        present(shipDetailsViewController, animated: true, completion: nil)
     }
     
     @objc func handleRefresh() {
@@ -211,3 +241,8 @@ private extension AllShipsViewController {
     }
 }
 
+extension AllShipsViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        CustomPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
