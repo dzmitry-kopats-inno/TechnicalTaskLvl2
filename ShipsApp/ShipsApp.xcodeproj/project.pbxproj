@@ -26,7 +26,6 @@
 		CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B2D2D1316BA00CEDCE1 /* AllShipsViewController.swift */; };
 		CE2A5B302D1316D100CEDCE1 /* AllShipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */; };
 		CE2A5B322D1316EB00CEDCE1 /* ShipDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */; };
-		CE2A5B342D13170900CEDCE1 /* ShipDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */; };
 		CE2A5B362D13462200CEDCE1 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B352D13462200CEDCE1 /* CustomTextFieldView.swift */; };
 		CE2A5B382D15730000CEDCE1 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B372D15730000CEDCE1 /* ValidationService.swift */; };
 		CE2A5B3A2D15755500CEDCE1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B392D15755500CEDCE1 /* NetworkService.swift */; };
@@ -46,6 +45,7 @@
 		CE2A5B5F2D18464C00CEDCE1 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B5E2D18464C00CEDCE1 /* UIImageView+Extension.swift */; };
 		CE2A5B612D184CB600CEDCE1 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B602D184CB600CEDCE1 /* CoreDataService.swift */; };
 		CE2A5B632D19738100CEDCE1 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B622D19738100CEDCE1 /* BannerView.swift */; };
+		CE2A5B652D19C7D800CEDCE1 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B642D19C7D800CEDCE1 /* CustomPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +86,6 @@
 		CE2A5B2D2D1316BA00CEDCE1 /* AllShipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShipsViewController.swift; sourceTree = "<group>"; };
 		CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShipsViewModel.swift; sourceTree = "<group>"; };
 		CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailsViewController.swift; sourceTree = "<group>"; };
-		CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailsViewModel.swift; sourceTree = "<group>"; };
 		CE2A5B352D13462200CEDCE1 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		CE2A5B372D15730000CEDCE1 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		CE2A5B392D15755500CEDCE1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		CE2A5B5E2D18464C00CEDCE1 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		CE2A5B602D184CB600CEDCE1 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		CE2A5B622D19738100CEDCE1 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		CE2A5B642D19C7D800CEDCE1 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +286,7 @@
 				CE2A5B4E2D16F5CB00CEDCE1 /* ShipInfoTableViewCell.swift */,
 				CE2A5B2F2D1316D100CEDCE1 /* AllShipsViewModel.swift */,
 				CE2A5B502D16F6D100CEDCE1 /* TableViewHeaderView.swift */,
+				CE2A5B642D19C7D800CEDCE1 /* CustomPresentationController.swift */,
 			);
 			path = AllShipsModule;
 			sourceTree = "<group>";
@@ -294,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */,
-				CE2A5B332D13170900CEDCE1 /* ShipDetailsViewModel.swift */,
 			);
 			path = ShipDetailsModule;
 			sourceTree = "<group>";
@@ -456,11 +456,11 @@
 				CE2A5AE52D119C6200CEDCE1 /* LoginViewController.swift in Sources */,
 				CE2A5B202D1313B100CEDCE1 /* NetworkMonitorService.swift in Sources */,
 				CE2A5B3E2D15841C00CEDCE1 /* AppError.swift in Sources */,
-				CE2A5B342D13170900CEDCE1 /* ShipDetailsViewModel.swift in Sources */,
 				CE2A5B5C2D183CFC00CEDCE1 /* ShipEntity+CoreDataClass.swift in Sources */,
 				CE2A5B5D2D183CFC00CEDCE1 /* ShipEntity+CoreDataProperties.swift in Sources */,
 				CE2A5B4D2D15BBD000CEDCE1 /* RequestBuilder.swift in Sources */,
 				CE2A5B632D19738100CEDCE1 /* BannerView.swift in Sources */,
+				CE2A5B652D19C7D800CEDCE1 /* CustomPresentationController.swift in Sources */,
 				CE2A5AEB2D119C6200CEDCE1 /* ShipModel.xcdatamodeld in Sources */,
 				CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */,
 				CE2A5B3C2D15812C00CEDCE1 /* LoginService.swift in Sources */,

@@ -60,7 +60,6 @@ final class AllShipsViewController: UIViewController {
     }
 }
 
-// MARK: UITableViewDelegate
 extension AllShipsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableViewHeaderView.reuseIdentifier),
@@ -76,6 +75,7 @@ extension AllShipsViewController: UITableViewDelegate {
 
 private extension AllShipsViewController {
     func setupUI() {
+        view.backgroundColor = .systemBackground
         title = Constants.screenTitle
         
         view.addSubview(tableView)
@@ -205,9 +205,11 @@ private extension AllShipsViewController {
     }
     
     func navigateToShipDetailsScreen(with ship: ShipModel) {
-        // TODO: Open ShipDetailsViewController
-        
-        // TODO: Present modally
+        let shipDetailsViewController = ShipDetailsViewController(ship: ship)
+        shipDetailsViewController.modalPresentationStyle = .custom
+        shipDetailsViewController.transitioningDelegate = self
+
+        present(shipDetailsViewController, animated: true, completion: nil)
     }
     
     @objc func handleRefresh() {
@@ -237,3 +239,8 @@ private extension AllShipsViewController {
     }
 }
 
+extension AllShipsViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        CustomPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}

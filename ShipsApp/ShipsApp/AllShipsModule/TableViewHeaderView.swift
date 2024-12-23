@@ -36,7 +36,7 @@ class TableViewHeaderView: UITableViewHeaderFooterView, Reusable {
 
 private extension TableViewHeaderView {
     func setupView() {
-        titleLabel.textColor = traitCollection.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
+        titleLabel.textColor = traitCollection.userInterfaceStyle == .dark ? .white : .black
         addSubview(titleLabel)
         
         NSLayoutConstraint.activate([

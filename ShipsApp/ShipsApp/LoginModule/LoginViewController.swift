@@ -115,6 +115,7 @@ final class LoginViewController: UIViewController {
 
 private extension LoginViewController {
     func setupUI() {
+        view.backgroundColor = .systemBackground
         
         view.addSubview(titleLabel)
         view.addSubview(stackView)

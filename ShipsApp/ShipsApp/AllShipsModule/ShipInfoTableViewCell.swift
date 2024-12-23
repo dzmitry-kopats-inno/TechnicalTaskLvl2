@@ -17,6 +17,8 @@ private enum Constants {
     static let contentViewBorderColor: UIColor = .lightGray
     static let cellPadding: CGFloat = 8.0
     static let verticalSpacing: CGFloat = 4.0
+    static let placeholderImageName = "shipPlaceholder"
+    
 }
 
 final class ShipInfoTableViewCell: UITableViewCell, Reusable {
@@ -90,12 +92,10 @@ final class ShipInfoTableViewCell: UITableViewCell, Reusable {
         
         if let imageUrlString = ship.image, let imageUrl = URL(string: imageUrlString) {
             shipImageView.loadImage(from: imageUrl) { [weak self] in
-                DispatchQueue.main.async {
-                    self?.setNeedsLayout()
-                }
+                self?.setNeedsLayout()
             }
         } else {
-            shipImageView.image = UIImage(named: "shipPlaceholder")
+            shipImageView.image = UIImage(named: Constants.placeholderImageName)
         }
     }
 }

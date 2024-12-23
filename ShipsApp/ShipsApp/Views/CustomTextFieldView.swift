@@ -29,7 +29,7 @@ final class CustomTextFieldView: UIView {
     }
     
     private var baseColor: UIColor {
-        traitCollection.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
+        traitCollection.userInterfaceStyle == .dark ? .white : .black
     }
     
     private let label: UILabel = {
@@ -72,10 +72,6 @@ final class CustomTextFieldView: UIView {
         nil
     }
     
-    func setBorderColor(_ color: UIColor) {
-        textField.layer.borderColor = color.cgColor
-    }
-    
     func validate() {
         guard let text = text, !text.isEmpty else {
             setBorderColor(.red)
@@ -86,6 +82,10 @@ final class CustomTextFieldView: UIView {
 }
 
 private extension CustomTextFieldView {
+    func setBorderColor(_ color: UIColor) {
+        textField.layer.borderColor = color.cgColor
+    }
+    
     func setupUI(labelText: String, placeholder: String?) {
         label.text = labelText
         textField.textColor = baseColor
