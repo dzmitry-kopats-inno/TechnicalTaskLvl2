@@ -24,11 +24,9 @@ private enum Constants {
 }
 
 final class LoginViewController: UIViewController {
-    // MARK: - Properties
     private let viewModel: LoginViewModel
     private let disposeBag = DisposeBag()
     
-    // MARK: - GUI Properties
     private let activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +92,6 @@ final class LoginViewController: UIViewController {
         return stackView
     }()
 
-    // MARK: - Life Cycle
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -112,7 +109,6 @@ final class LoginViewController: UIViewController {
     }
 }
 
-// MARK: - UI Setup
 private extension LoginViewController {
     func setupUI() {
         view.backgroundColor = .white
@@ -154,8 +150,7 @@ private extension LoginViewController {
         guestButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
-                // TODO: - Handle action
-                debugPrint("Guest login tapped")
+                openAllShipsScreen(isGuestMode: true)
             })
             .disposed(by: disposeBag)
         
@@ -173,7 +168,7 @@ private extension LoginViewController {
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
                 stopLoading()
-                // TODO: - Open AllShipsViewController
+                openAllShipsScreen(isGuestMode: false)
             })
             .disposed(by: disposeBag)
         
@@ -205,6 +200,26 @@ private extension LoginViewController {
         button.isEnabled = isEnabled
         button.backgroundColor = isEnabled ? .systemBlue : .systemGray
     }
+    
+    func openAllShipsScreen(isGuestMode: Bool) {
+        let networkService = AppNetworkManager()
+        let networkServiceMonitor = NetworkMonitorServiceImplementation()
+        let coreDataService = CoreDataServiceImplementation()
+        let shipRepository = ShipsRepositoryImplementation(networkService: networkService,
+                                                           coreDataService: coreDataService)
+        
+        let viewModel = AllShipsViewModel(
+            networkMonitorService: networkServiceMonitor,
+            shipsRepository: shipRepository,
+            isGuestMode: isGuestMode
+        )
+        
+        let allShipsViewController = AllShipsViewController(viewModel: viewModel)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(allShipsViewController, animated: true)
+        }
+    }
+
     
     func setupDismissKeyboardGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))

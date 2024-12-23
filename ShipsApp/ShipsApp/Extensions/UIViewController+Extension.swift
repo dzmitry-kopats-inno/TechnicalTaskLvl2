@@ -22,4 +22,14 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
+    
+    func showNoNetworkAlert() {
+        let alert = UIAlertController(
+            title: "No Network Connection",
+            message: "Please check your internet connection.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }
