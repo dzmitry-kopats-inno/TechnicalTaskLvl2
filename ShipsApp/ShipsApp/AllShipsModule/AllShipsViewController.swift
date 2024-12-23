@@ -205,7 +205,9 @@ private extension AllShipsViewController {
     }
     
     func navigateToShipDetailsScreen(with ship: ShipModel) {
-        let shipDetailsViewController = ShipDetailsViewController(ship: ship)
+        let viewModel = ShipDetailsViewModel(ship: ship, 
+                                             networkMonitorService: viewModel.getNetworkMonitorService())
+        let shipDetailsViewController = ShipDetailsViewController(viewModel: viewModel)
         shipDetailsViewController.modalPresentationStyle = .custom
         shipDetailsViewController.transitioningDelegate = self
 

@@ -6,19 +6,25 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class ShipDetailsViewController: UIViewController {
-    private let ship: ShipModel
+private enum Constants {
+    static let imageSize: CGFloat = 200.0
+    static let stackSpacing: CGFloat = 16.0
+    static let stackHorizontalPadding: CGFloat = 16.0
+    static let contentTopPadding: CGFloat = 60.0
+    static let contentBottomPadding: CGFloat = 20.0
+    static let closeButtonInset: CGFloat = 12.0
+    static let placeholderImageName = "shipPlaceholder"
+    static let offlineModeTitle = "No internet connection. You’re in Offline mode"
+}
+
+final class ShipDetailsViewController: UIViewController {
+    private let viewModel: ShipDetailsViewModel
+    private let disposeBag = DisposeBag()
     
-    private enum Constants {
-        static let imageSize: CGFloat = 200.0
-        static let stackSpacing: CGFloat = 16.0
-        static let stackHorizontalPadding: CGFloat = 16.0
-        static let contentTopPadding: CGFloat = 20.0
-        static let contentBottomPadding: CGFloat = 20.0
-        static let closeButtonInset: CGFloat = 12.0
-        static let placeholderImageName = "shipPlaceholder"
-    }
+    private var bannerView: BannerView?
     
     private let shipImageView: UIImageView = {
         let imageView = UIImageView()
@@ -28,12 +34,12 @@ class ShipDetailsViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var nameLabel: UILabel = createLabel(font: .boldSystemFont(ofSize: 24), textAlignment: .center)
-    private lazy var typeLabel: UILabel = createLabel()
-    private lazy var yearBuiltLabel: UILabel = createLabel()
-    private lazy var weightKgLabel: UILabel = createLabel()
-    private lazy var homePortLabel: UILabel = createLabel()
-    private lazy var rolesLabel: UILabel = createLabel(numberOfLines: 0)
+    private lazy var nameLabel: BoldTextLabel = createBoldLabel(font: .boldSystemFont(ofSize: 24), textAlignment: .center)
+    private lazy var typeLabel: BoldTextLabel = createBoldLabel()
+    private lazy var yearBuiltLabel: BoldTextLabel = createBoldLabel()
+    private lazy var weightKgLabel: BoldTextLabel = createBoldLabel()
+    private lazy var homePortLabel: BoldTextLabel = createBoldLabel()
+    private lazy var rolesLabel: BoldTextLabel = createBoldLabel(numberOfLines: 0)
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -48,9 +54,8 @@ class ShipDetailsViewController: UIViewController {
         return button
     }()
     
-    private lazy var stackView: UIStackView = {
+    private lazy var mainStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
-            shipImageView,
             nameLabel,
             typeLabel,
             yearBuiltLabel,
@@ -60,12 +65,20 @@ class ShipDetailsViewController: UIViewController {
         ])
         stack.axis = .vertical
         stack.spacing = Constants.stackSpacing
+        stack.alignment = .leading
+        return stack
+    }()
+    
+    private lazy var imageStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [shipImageView])
+        stack.axis = .vertical
+        stack.spacing = Constants.stackSpacing
         stack.alignment = .center
         return stack
     }()
     
-    init(ship: ShipModel) {
-        self.ship = ship
+    init(viewModel: ShipDetailsViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -77,6 +90,7 @@ class ShipDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         configureWithData()
+        bindNetworkStatus()
     }
 }
 
@@ -87,7 +101,8 @@ private extension ShipDetailsViewController {
         view.addSubview(scrollView)
         view.addSubview(closeButton)
         scrollView.addSubview(contentView)
-        contentView.addSubview(stackView)
+        contentView.addSubview(imageStackView)
+        contentView.addSubview(mainStackView)
         
         setupLayout()
     }
@@ -95,7 +110,8 @@ private extension ShipDetailsViewController {
     func setupLayout() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        imageStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -109,10 +125,15 @@ private extension ShipDetailsViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.contentTopPadding),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.stackHorizontalPadding),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.stackHorizontalPadding),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -Constants.contentBottomPadding),
+            imageStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.contentTopPadding),
+            imageStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            mainStackView.topAnchor.constraint(equalTo: imageStackView.bottomAnchor, constant: Constants.stackSpacing),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.stackHorizontalPadding),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.stackHorizontalPadding),
+            mainStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -Constants.contentBottomPadding),
             
             shipImageView.widthAnchor.constraint(equalToConstant: Constants.imageSize),
             shipImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
@@ -123,12 +144,14 @@ private extension ShipDetailsViewController {
     }
     
     func configureWithData() {
-        nameLabel.text = ship.name
-        typeLabel.text = "Type: \(ship.type ?? "Unknown")"
-        yearBuiltLabel.text = "Year Built: \(ship.yearBuilt.map { String($0) } ?? "Unknown")"
-        weightKgLabel.text = "Weight: \(ship.weightKg.map { "\($0) kg" } ?? "Unknown")"
-        homePortLabel.text = "Home Port: \(ship.homePort ?? "Unknown")"
-        rolesLabel.text = "Roles: \(ship.roles?.joined(separator: ", ") ?? "No roles")"
+        let ship = viewModel.shipModel
+        
+        nameLabel.setBoldText(ship.name)
+        typeLabel.setBoldText("Type: \(ship.type ?? "Unknown")")
+        yearBuiltLabel.setBoldText("Year Built: \(ship.yearBuilt.map { String($0) } ?? "Unknown")")
+        weightKgLabel.setBoldText("Weight: \(ship.weightKg.map { "\($0) kg" } ?? "Unknown")")
+        homePortLabel.setBoldText("Home Port: \(ship.homePort ?? "Unknown")")
+        rolesLabel.setBoldText("Roles: \(ship.roles?.joined(separator: ", ") ?? "No roles")")
         
         if let imageUrlString = ship.image, let imageUrl = URL(string: imageUrlString) {
             shipImageView.loadImage(from: imageUrl)
@@ -137,21 +160,45 @@ private extension ShipDetailsViewController {
         }
     }
     
+    func bindNetworkStatus() {
+        viewModel.networkStatus
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isAvailable in
+                guard let self else { return }
+                if isAvailable {
+                    self.bannerView?.dismiss()
+                    self.bannerView = nil
+                    animateCloseButton(up: true)
+                } else if self.bannerView == nil {
+                    self.bannerView = BannerView(message: Constants.offlineModeTitle)
+                    self.bannerView?.show(in: self.view)
+                    animateCloseButton(up: false)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func animateCloseButton(up: Bool) {
+        let yOffset: CGFloat = up ? 10 : 60
+
+        UIView.animate(withDuration: 0.3, animations: {
+            self.closeButton.transform = CGAffineTransform(translationX: 0, y: yOffset)
+        })
+    }
+    
     @objc func handleClose() {
+        bannerView?.dismiss()
+        bannerView = nil
+        animateCloseButton(up: true)
         dismiss(animated: true, completion: nil)
     }
     
-    func createLabel(
+    func createBoldLabel(
         font: UIFont = .systemFont(ofSize: 18),
         textColor: UIColor = .darkGray,
         textAlignment: NSTextAlignment = .left,
         numberOfLines: Int = 1
-    ) -> UILabel {
-        let label = UILabel()
-        label.font = font
-        label.textColor = textColor
-        label.textAlignment = textAlignment
-        label.numberOfLines = numberOfLines
-        return label
+    ) -> BoldTextLabel {
+        BoldTextLabel(font: font, textColor: textColor, textAlignment: textAlignment, numberOfLines: numberOfLines)
     }
 }

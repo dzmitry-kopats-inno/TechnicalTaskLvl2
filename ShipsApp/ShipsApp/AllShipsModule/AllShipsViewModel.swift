@@ -92,6 +92,10 @@ final class AllShipsViewModel {
             errorSubject.onNext(error)
         }
     }
+    
+    func getNetworkMonitorService() -> NetworkMonitorService {
+        networkMonitorService
+    }
 }
 
 private extension AllShipsViewModel {

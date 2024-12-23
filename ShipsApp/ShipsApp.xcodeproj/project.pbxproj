@@ -47,6 +47,8 @@
 		CE2A5B632D19738100CEDCE1 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B622D19738100CEDCE1 /* BannerView.swift */; };
 		CE2A5B652D19C7D800CEDCE1 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B642D19C7D800CEDCE1 /* CustomPresentationController.swift */; };
 		CE2A5B692D19CC3E00CEDCE1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B682D19CC3E00CEDCE1 /* UIColor+Extension.swift */; };
+		CE2A5B6B2D19D28800CEDCE1 /* BoldTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B6A2D19D28800CEDCE1 /* BoldTextLabel.swift */; };
+		CE2A5B6D2D19D7B400CEDCE1 /* ShipDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B6C2D19D7B400CEDCE1 /* ShipDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		CE2A5B622D19738100CEDCE1 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		CE2A5B642D19C7D800CEDCE1 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 		CE2A5B682D19CC3E00CEDCE1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CE2A5B6A2D19D28800CEDCE1 /* BoldTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoldTextLabel.swift; sourceTree = "<group>"; };
+		CE2A5B6C2D19D7B400CEDCE1 /* ShipDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +221,7 @@
 			children = (
 				CE2A5B352D13462200CEDCE1 /* CustomTextFieldView.swift */,
 				CE2A5B622D19738100CEDCE1 /* BannerView.swift */,
+				CE2A5B6A2D19D28800CEDCE1 /* BoldTextLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2A5B312D1316EB00CEDCE1 /* ShipDetailsViewController.swift */,
+				CE2A5B6C2D19D7B400CEDCE1 /* ShipDetailsViewModel.swift */,
 			);
 			path = ShipDetailsModule;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2A5B402D15870500CEDCE1 /* UIViewController+Extension.swift in Sources */,
+				CE2A5B6D2D19D7B400CEDCE1 /* ShipDetailsViewModel.swift in Sources */,
 				CE2A5B362D13462200CEDCE1 /* CustomTextFieldView.swift in Sources */,
 				CE2A5B1D2D1312B900CEDCE1 /* Reusable.swift in Sources */,
 				CE2A5AE52D119C6200CEDCE1 /* LoginViewController.swift in Sources */,
@@ -466,6 +473,7 @@
 				CE2A5B652D19C7D800CEDCE1 /* CustomPresentationController.swift in Sources */,
 				CE2A5AEB2D119C6200CEDCE1 /* ShipModel.xcdatamodeld in Sources */,
 				CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */,
+				CE2A5B6B2D19D28800CEDCE1 /* BoldTextLabel.swift in Sources */,
 				CE2A5B3C2D15812C00CEDCE1 /* LoginService.swift in Sources */,
 				CE2A5AE12D119C6200CEDCE1 /* AppDelegate.swift in Sources */,
 				CE2A5B5F2D18464C00CEDCE1 /* UIImageView+Extension.swift in Sources */,
