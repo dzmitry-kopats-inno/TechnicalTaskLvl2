@@ -16,7 +16,7 @@ private enum Constants {
     static let screenTitle = "All ships"
     static let logoutTitleGuest = "Exit"
     static let logoutTitleUser = "Logout"
-    static let bannerTitle = "No internet connection. You’re in Offline mode"
+    static let offlineModeTitle = "No internet connection. You’re in Offline mode"
 }
 
 final class AllShipsViewController: UIViewController {
@@ -72,19 +72,6 @@ extension AllShipsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { Constants.headerHeight }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.ships
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] ships in
-                guard let self else { return }
-                
-                let ship = ships[indexPath.row]
-                self.navigateToShipDetailsScreen(with: ship)
-                tableView.deselectRow(at: indexPath, animated: true)
-            })
-            .disposed(by: disposeBag)
-    }
 }
 
 private extension AllShipsViewController {
@@ -146,6 +133,18 @@ private extension AllShipsViewController {
     func setupTableView() {
         tableView.delegate = self
         
+        tableView.rx.modelSelected(ShipModel.self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] ship in
+                guard let self else { return }
+                
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    navigateToShipDetailsScreen(with: ship)
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
+        
         tableView.rx.itemDeleted
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self else { return }
@@ -194,12 +193,12 @@ private extension AllShipsViewController {
             .subscribe(onNext: { [weak self] isAvailable in
                 guard let self else { return }
                 if isAvailable {
-                    self.bannerView?.dismiss()
-                    self.bannerView = nil
-                    self.viewModel.fetchShips()
-                } else if self.bannerView == nil {
-                    self.bannerView = BannerView(message: Constants.bannerTitle)
-                    self.bannerView?.show(in: self.view)
+                    bannerView?.dismiss()
+                    bannerView = nil
+                    viewModel.fetchShips()
+                } else if bannerView == nil {
+                    bannerView = BannerView(message: Constants.offlineModeTitle)
+                    bannerView?.show(in: self.view)
                 }
             })
             .disposed(by: disposeBag)

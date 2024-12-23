@@ -44,7 +44,6 @@ final class AllShipsViewModel {
         self.isGuestMode = isGuestMode
         
         observeRepositoryErrors()
-        observeNetworkChanges()
     }
     
     func fetchShips() {
@@ -104,23 +103,5 @@ private extension AllShipsViewModel {
                 errorSubject.onNext(error)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func observeNetworkChanges() {
-        networkMonitorService.isNetworkAvailable
-            .distinctUntilChanged()
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] isAvailable in
-                // TODO: - Fix
-                guard let self else { return }
-                if isAvailable {
-                    self.fetchShips()
-                } else {
-                    // TODO: - Show error?
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        networkMonitorService.start()
     }
 }
