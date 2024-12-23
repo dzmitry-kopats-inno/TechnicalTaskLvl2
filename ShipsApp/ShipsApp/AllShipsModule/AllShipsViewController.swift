@@ -104,7 +104,11 @@ private extension AllShipsViewController {
     }
     
     @objc func handleLogout() {
-        navigateToLoginScreen()
+        if viewModel.isGuestMode {
+            showGuestAlert()
+        } else {
+            navigateToLoginScreen()
+        }
     }
     
     func navigateToLoginScreen() {
@@ -114,6 +118,20 @@ private extension AllShipsViewController {
         }
         
         navigationController.popViewController(animated: true)
+    }
+    
+    func showGuestAlert() {
+        let alert = UIAlertController(
+            title: "Thank you!",
+            message: "Thank you for trialing this app.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+            self?.navigateToLoginScreen()
+        }))
+        
+        present(alert, animated: true)
     }
     
     func setupLayout() {
