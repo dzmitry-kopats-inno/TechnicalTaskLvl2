@@ -13,7 +13,6 @@ protocol ShipsRepository {
     
     func fetchShips() -> Observable<[ShipModel]>
     func fetchCachedShips() -> Observable<[ShipModel]>
-    func saveShips(_ ships: [ShipModel])
     func deleteShip(_ ship: ShipModel)
 }
 
@@ -55,10 +54,6 @@ final class ShipsRepositoryImplementation: ShipsRepository {
     
     func fetchCachedShips() -> Observable<[ShipModel]> {
         coreDataService.fetchShips()
-    }
-
-    func saveShips(_ ships: [ShipModel]) {
-        coreDataService.saveShips(ships)
     }
     
     func deleteShip(_ ship: ShipModel) {

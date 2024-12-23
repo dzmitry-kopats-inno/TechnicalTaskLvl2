@@ -47,8 +47,12 @@ final class CoreDataServiceImplementation: CoreDataService {
     }
     
     func saveShips(_ ships: [ShipModel]) {
+        let existingShips = getExistingShips()
+        
         for ship in ships {
-            createShipEntity(ship)
+            if !existingShips.contains(where: { $0.id == ship.id }) {
+                createShipEntity(ship)
+            }
         }
         
         saveContext(errorText: "Failed to save ships")
@@ -73,6 +77,19 @@ final class CoreDataServiceImplementation: CoreDataService {
 }
 
 private extension CoreDataServiceImplementation {
+    func getExistingShips() -> [ShipEntity] {
+        let fetchRequest: NSFetchRequest<ShipEntity> = ShipEntity.fetchRequest()
+        
+        do {
+            let ships = try coreDataStack.context.fetch(fetchRequest)
+            return ships
+        } catch {
+            let appError = AppError(message: "Failed to fetch existing ships: \(error.localizedDescription)")
+            errorSubject.onNext(appError)
+            return []
+        }
+    }
+    
     func createShipEntity(_ ship: ShipModel) {
         let newShip = ShipEntity(context: coreDataStack.context)
         newShip.id = ship.id
