@@ -17,7 +17,6 @@ class TableViewHeaderView: UITableViewHeaderFooterView, Reusable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Constants.headerFont
-        label.textColor = .black
         return label
     }()
 
@@ -37,7 +36,7 @@ class TableViewHeaderView: UITableViewHeaderFooterView, Reusable {
 
 private extension TableViewHeaderView {
     func setupView() {
-        backgroundColor = .systemGray
+        titleLabel.textColor = traitCollection.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
         addSubview(titleLabel)
         
         NSLayoutConstraint.activate([

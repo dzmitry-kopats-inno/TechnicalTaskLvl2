@@ -15,11 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
+        let networkMonitorService = NetworkMonitorServiceImplementation()
         let validationService = EmailValidationService()
         let userRepository = InMemoryUserRepository()
         let loginService = LoginServiceImplementation(userRepository: userRepository)
         
-        let viewModel = LoginViewModel(validationService: validationService,
+        let viewModel = LoginViewModel(networkMonitorService: networkMonitorService,
+                                       validationService: validationService,
                                        loginService: loginService)
         let loginViewController = LoginViewController(viewModel: viewModel)
         window.rootViewController = UINavigationController(rootViewController: loginViewController)

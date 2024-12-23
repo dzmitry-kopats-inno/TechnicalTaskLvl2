@@ -28,20 +28,23 @@ final class CustomTextFieldView: UIView {
         set { textField.text = newValue }
     }
     
+    private var baseColor: UIColor {
+        traitCollection.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
+    }
+    
     private let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.textColor = .label
         return label
     }()
     
     private(set) var textField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1.0
         textField.layer.cornerRadius = Constants.cornerRadius
         textField.font = .systemFont(ofSize: 14)
         textField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight).isActive = true
-        textField.textColor = .black
         textField.attributedPlaceholder = NSAttributedString(
             string: "Enter text",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
@@ -60,6 +63,8 @@ final class CustomTextFieldView: UIView {
     init(labelText: String, type: CustomTextFieldType = .requiredText, placeholder: String? = nil) {
         self.type = type
         super.init(frame: .zero)
+        
+        setBorderColor(baseColor)
         setupUI(labelText: labelText, placeholder: placeholder)
     }
 
@@ -76,13 +81,14 @@ final class CustomTextFieldView: UIView {
             setBorderColor(.red)
             return
         }
-        setBorderColor(.black)
+        setBorderColor(baseColor)
     }
 }
 
 private extension CustomTextFieldView {
     func setupUI(labelText: String, placeholder: String?) {
         label.text = labelText
+        textField.textColor = baseColor
 
         if type == .email {
             textField.keyboardType = .emailAddress
@@ -98,6 +104,10 @@ private extension CustomTextFieldView {
 
         addSubview(stackView)
         
+        setupLayout()
+    }
+    
+    func setupLayout() {
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),

@@ -45,6 +45,7 @@
 		CE2A5B5D2D183CFC00CEDCE1 /* ShipEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B5B2D183CFC00CEDCE1 /* ShipEntity+CoreDataProperties.swift */; };
 		CE2A5B5F2D18464C00CEDCE1 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B5E2D18464C00CEDCE1 /* UIImageView+Extension.swift */; };
 		CE2A5B612D184CB600CEDCE1 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B602D184CB600CEDCE1 /* CoreDataService.swift */; };
+		CE2A5B632D19738100CEDCE1 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B622D19738100CEDCE1 /* BannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		CE2A5B5B2D183CFC00CEDCE1 /* ShipEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShipEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE2A5B5E2D18464C00CEDCE1 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		CE2A5B602D184CB600CEDCE1 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		CE2A5B622D19738100CEDCE1 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2A5B352D13462200CEDCE1 /* CustomTextFieldView.swift */,
+				CE2A5B622D19738100CEDCE1 /* BannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				CE2A5B5C2D183CFC00CEDCE1 /* ShipEntity+CoreDataClass.swift in Sources */,
 				CE2A5B5D2D183CFC00CEDCE1 /* ShipEntity+CoreDataProperties.swift in Sources */,
 				CE2A5B4D2D15BBD000CEDCE1 /* RequestBuilder.swift in Sources */,
+				CE2A5B632D19738100CEDCE1 /* BannerView.swift in Sources */,
 				CE2A5AEB2D119C6200CEDCE1 /* ShipModel.xcdatamodeld in Sources */,
 				CE2A5B2E2D1316BA00CEDCE1 /* AllShipsViewController.swift in Sources */,
 				CE2A5B3C2D15812C00CEDCE1 /* LoginService.swift in Sources */,

@@ -12,6 +12,7 @@ protocol ShipsRepository {
     var error: Observable<AppError> { get }
     
     func fetchShips() -> Observable<[ShipModel]>
+    func fetchCachedShips() -> Observable<[ShipModel]>
     func saveShips(_ ships: [ShipModel])
     func deleteShip(_ ship: ShipModel)
 }
@@ -48,8 +49,12 @@ final class ShipsRepositoryImplementation: ShipsRepository {
             .catch { [weak self] error in
                 guard let self else { return Observable.empty() }
                 errorSubject.onNext(AppError(message: "Failed to fetch ships: \(error.localizedDescription)"))
-                return Observable.empty()
+                return fetchCachedShips()
             }
+    }
+    
+    func fetchCachedShips() -> Observable<[ShipModel]> {
+        coreDataService.fetchShips()
     }
 
     func saveShips(_ ships: [ShipModel]) {

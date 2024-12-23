@@ -21,18 +21,20 @@ private enum Constants {
     static let passwordPlaceholder = "Password"
     static let loginButtonTitle = "Login"
     static let guestButtonTitle = "Login as a guest"
+    static let offlineModeTitle = "No internet connection. You’re in Offline mode"
 }
 
 final class LoginViewController: UIViewController {
     private let viewModel: LoginViewModel
     private let disposeBag = DisposeBag()
     
+    private var bannerView: BannerView?
+    
     private let activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.hidesWhenStopped = true
-        // TODO: - Change color
-        activityIndicator.color = .gray
+        activityIndicator.color = .blue
         return activityIndicator
     }()
     
@@ -105,13 +107,14 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindActions()
+        bindNetworkStatus()
         setupDismissKeyboardGesture()
+        updateNavigationBarAppearance()
     }
 }
 
 private extension LoginViewController {
     func setupUI() {
-        view.backgroundColor = .white
         
         view.addSubview(titleLabel)
         view.addSubview(stackView)
@@ -184,6 +187,22 @@ private extension LoginViewController {
         .disposed(by: disposeBag)
     }
     
+    func bindNetworkStatus() {
+        viewModel.isNetworkAvailable
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isAvailable in
+                guard let self else { return }
+                if isAvailable {
+                    bannerView?.dismiss()
+                    bannerView = nil
+                } else if bannerView == nil {
+                    bannerView = BannerView(message: Constants.offlineModeTitle)
+                    bannerView?.show(in: view)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func startLoading() {
         activityIndicator.startAnimating()
         updateButtonState(loginButton, isEnabled: false)
@@ -203,7 +222,7 @@ private extension LoginViewController {
     
     func openAllShipsScreen(isGuestMode: Bool) {
         let networkService = AppNetworkManager()
-        let networkServiceMonitor = NetworkMonitorServiceImplementation()
+        let networkServiceMonitor = viewModel.getNetworkMonitorService()
         let coreDataService = CoreDataServiceImplementation()
         let shipRepository = ShipsRepositoryImplementation(networkService: networkService,
                                                            coreDataService: coreDataService)
@@ -229,5 +248,21 @@ private extension LoginViewController {
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func updateNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        
+        if traitCollection.userInterfaceStyle == .dark {
+            appearance.backgroundColor = .black
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        } else {
+            appearance.backgroundColor = .white
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        }
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 }

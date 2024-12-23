@@ -16,12 +16,15 @@ private enum Constants {
     static let screenTitle = "All ships"
     static let logoutTitleGuest = "Exit"
     static let logoutTitleUser = "Logout"
+    static let bannerTitle = "No internet connection. You’re in Offline mode"
 }
 
 final class AllShipsViewController: UIViewController {
     private let viewModel: AllShipsViewModel
     private let disposeBag = DisposeBag()
 
+    private var bannerView: BannerView?
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +54,7 @@ final class AllShipsViewController: UIViewController {
         setupUI()
         setupTableView()
         bindViewModel()
+        bindNetworkStatus()
 
         viewModel.fetchShips()
     }
@@ -86,7 +90,6 @@ extension AllShipsViewController: UITableViewDelegate {
 private extension AllShipsViewController {
     func setupUI() {
         title = Constants.screenTitle
-        view.backgroundColor = .white
         
         view.addSubview(tableView)
         
@@ -154,18 +157,6 @@ private extension AllShipsViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.isNetworkAvailable
-            .subscribe(onNext: { [weak self] isAvailable in
-                guard let self else { return }
-                if isAvailable {
-                    // TODO: - Need to hide alert?
-                } else {
-                    // TODO: - Hide alert
-                    showNoNetworkAlert()
-                }
-            })
-            .disposed(by: disposeBag)
-        
         viewModel.isRefreshing
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isRefreshing in
@@ -174,6 +165,23 @@ private extension AllShipsViewController {
                     refreshControl.beginRefreshing()
                 } else {
                     refreshControl.endRefreshing()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bindNetworkStatus() {
+        viewModel.isNetworkAvailable
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isAvailable in
+                guard let self else { return }
+                if isAvailable {
+                    self.bannerView?.dismiss()
+                    self.bannerView = nil
+                    self.viewModel.fetchShips()
+                } else if self.bannerView == nil {
+                    self.bannerView = BannerView(message: Constants.bannerTitle)
+                    self.bannerView?.show(in: self.view)
                 }
             })
             .disposed(by: disposeBag)

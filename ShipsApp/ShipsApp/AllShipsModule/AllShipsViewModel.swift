@@ -59,6 +59,20 @@ final class AllShipsViewModel {
                 isRefreshingSubject.onNext(false)
             }, onError: { [weak self] error in
                 guard let self else { return }
+                networkMonitorService.isNetworkAvailable
+                    .take(1)
+                    .subscribe(onNext: { [weak self] isAvailable in
+                        guard let self else { return }
+                        if !isAvailable {
+                            shipsRepository.fetchCachedShips()
+                                .subscribe(onNext: { [weak self] cachedShips in
+                                    guard let self else { return }
+                                    shipsSubject.onNext(cachedShips)
+                                })
+                                .disposed(by: disposeBag)
+                        }
+                    })
+                    .disposed(by: disposeBag)
                 errorSubject.onNext(error)
                 isRefreshingSubject.onNext(false)
             })
@@ -97,6 +111,7 @@ private extension AllShipsViewModel {
             .distinctUntilChanged()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isAvailable in
+                // TODO: - Fix
                 guard let self else { return }
                 if isAvailable {
                     self.fetchShips()
