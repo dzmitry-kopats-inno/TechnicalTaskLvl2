@@ -150,6 +150,7 @@ private extension AllShipsViewController {
             .subscribe(onNext: { [weak self] error in
                 guard let self else { return }
                 showError(error)
+                refreshControl.endRefreshing()
             })
             .disposed(by: disposeBag)
         

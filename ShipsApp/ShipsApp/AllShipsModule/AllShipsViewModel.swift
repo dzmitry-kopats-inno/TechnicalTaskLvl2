@@ -43,13 +43,8 @@ final class AllShipsViewModel {
         self.shipsRepository = shipsRepository
         self.isGuestMode = isGuestMode
         
-        shipsRepository.error
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] error in
-                guard let self else { return }
-                errorSubject.onNext(error)
-            })
-            .disposed(by: disposeBag)
+        observeRepositoryErrors()
+        observeNetworkChanges()
     }
     
     func fetchShips() {
@@ -83,5 +78,34 @@ final class AllShipsViewModel {
         } catch {
             errorSubject.onNext(error)
         }
+    }
+}
+
+private extension AllShipsViewModel {
+    func observeRepositoryErrors() {
+        shipsRepository.error
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] error in
+                guard let self else { return }
+                errorSubject.onNext(error)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func observeNetworkChanges() {
+        networkMonitorService.isNetworkAvailable
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isAvailable in
+                guard let self else { return }
+                if isAvailable {
+                    self.fetchShips()
+                } else {
+                    // TODO: - Show error?
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        networkMonitorService.start()
     }
 }
