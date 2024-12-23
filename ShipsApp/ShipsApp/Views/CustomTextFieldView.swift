@@ -28,10 +28,6 @@ final class CustomTextFieldView: UIView {
         set { textField.text = newValue }
     }
     
-    private var baseColor: UIColor {
-        traitCollection.userInterfaceStyle == .dark ? .white : .black
-    }
-    
     private let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .medium)
@@ -64,7 +60,7 @@ final class CustomTextFieldView: UIView {
         self.type = type
         super.init(frame: .zero)
         
-        setBorderColor(baseColor)
+        setBorderColor(.textFieldText)
         setupUI(labelText: labelText, placeholder: placeholder)
     }
 
@@ -77,7 +73,7 @@ final class CustomTextFieldView: UIView {
             setBorderColor(.red)
             return
         }
-        setBorderColor(baseColor)
+        setBorderColor(.textFieldText)
     }
 }
 
@@ -88,7 +84,7 @@ private extension CustomTextFieldView {
     
     func setupUI(labelText: String, placeholder: String?) {
         label.text = labelText
-        textField.textColor = baseColor
+        textField.textColor = .textFieldText
 
         if type == .email {
             textField.keyboardType = .emailAddress

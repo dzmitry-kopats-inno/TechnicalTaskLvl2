@@ -43,7 +43,7 @@ class ShipDetailsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         let icon = UIImage(systemName: "xmark")
         button.setImage(icon, for: .normal)
-        button.tintColor = traitCollection.userInterfaceStyle == .dark ? .white : .black
+        button.tintColor = .closeButtonTint
         button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
         return button
     }()

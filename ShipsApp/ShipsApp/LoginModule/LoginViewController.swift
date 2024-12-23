@@ -254,14 +254,9 @@ private extension LoginViewController {
     func updateNavigationBarAppearance() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
-        
-        if traitCollection.userInterfaceStyle == .dark {
-            appearance.backgroundColor = .black
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        } else {
-            appearance.backgroundColor = .white
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        }
+
+        appearance.backgroundColor = .navigationBarBackground
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.navigationBarTitle]
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance

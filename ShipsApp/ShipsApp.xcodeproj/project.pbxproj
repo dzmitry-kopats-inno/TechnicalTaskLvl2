@@ -46,6 +46,7 @@
 		CE2A5B612D184CB600CEDCE1 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B602D184CB600CEDCE1 /* CoreDataService.swift */; };
 		CE2A5B632D19738100CEDCE1 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B622D19738100CEDCE1 /* BannerView.swift */; };
 		CE2A5B652D19C7D800CEDCE1 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B642D19C7D800CEDCE1 /* CustomPresentationController.swift */; };
+		CE2A5B692D19CC3E00CEDCE1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B682D19CC3E00CEDCE1 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		CE2A5B602D184CB600CEDCE1 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		CE2A5B622D19738100CEDCE1 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		CE2A5B642D19C7D800CEDCE1 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		CE2A5B682D19CC3E00CEDCE1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 			children = (
 				CE2A5B3F2D15870500CEDCE1 /* UIViewController+Extension.swift */,
 				CE2A5B5E2D18464C00CEDCE1 /* UIImageView+Extension.swift */,
+				CE2A5B682D19CC3E00CEDCE1 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				CE2A5B4F2D16F5CB00CEDCE1 /* ShipInfoTableViewCell.swift in Sources */,
 				CE2A5B4B2D15BA4C00CEDCE1 /* NetworkError.swift in Sources */,
 				CE2A5B382D15730000CEDCE1 /* ValidationService.swift in Sources */,
+				CE2A5B692D19CC3E00CEDCE1 /* UIColor+Extension.swift in Sources */,
 				CE2A5B612D184CB600CEDCE1 /* CoreDataService.swift in Sources */,
 				CE2A5B552D17111A00CEDCE1 /* CoreDataStack.swift in Sources */,
 				CE2A5B512D16F6D100CEDCE1 /* TableViewHeaderView.swift in Sources */,
